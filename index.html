@@ -4,41 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Anniversary!</title>
-
-  <!-- Google Fonts: Great Vibes (Cursive Calligraphy), Playfair Display, & Cairo -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    :root {
-      --bg-dark: #070a14;
-      --bg-radial-1: #111a2e;
-      --bg-radial-2: #090d19;
-      --gold-primary: #d4af37;
-      --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-      --gold-border: rgba(212, 175, 55, 0.4);
-      --orange-accent: #ea580c;
-      --orange-glow: rgba(234, 88, 12, 0.4);
-      --green-accent: #2d6a4f;
-      --green-light: #52b788;
-      --parchment-bg: #f4ebd0;
-      --parchment-border: #d3c49d;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: 'Great Vibes', 'Playfair Display', serif;
+      font-family: 'Great Vibes', cursive;
       color: #f8fafc;
       min-height: 100vh;
       display: flex;
@@ -46,10 +26,9 @@
       align-items: center;
       overflow-x: hidden;
       position: relative;
-      background: radial-gradient(circle at center, var(--bg-radial-1) 0%, var(--bg-radial-2) 65%, var(--bg-dark) 100%);
+      background: radial-gradient(circle at center, #111827 0%, #080c14 60%, #030508 100%) !important;
     }
 
-    /* Ambient Gold Dust Particles Canvas */
     #glitter-canvas {
       position: fixed;
       top: 0;
@@ -60,502 +39,286 @@
       z-index: 0;
     }
 
-    /* Main Container Glassmorphism Card */
     .container {
       position: relative;
-      z-index: 10;
-      background: rgba(12, 18, 34, 0.82);
+      z-index: 1;
+      background: rgba(17, 24, 39, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-radius: 32px;
-      padding: 40px 28px;
-      max-width: 540px;
-      width: 92%;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85),
-                  0 0 40px rgba(212, 175, 55, 0.12),
-                  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
+      padding: 35px 25px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.2);
       text-align: center;
-      border: 1.5px solid var(--gold-border);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       margin: 20px auto;
     }
 
-    /* Calligraphy Typography */
     .title-calligraphy {
-      font-family: 'Great Vibes', cursive;
       font-size: 3.8rem;
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
-      margin-bottom: 2px;
+      color: #d4af37;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      margin-bottom: 5px;
       line-height: 1.2;
-      letter-spacing: 1px;
     }
 
     .subtitle {
-      font-family: 'Great Vibes', cursive;
       font-size: 2rem;
       color: #cbd5e1;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
       line-height: 1.3;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    /* Navigation Grid & Realistic Buttons */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-bottom: 10px;
+      gap: 18px;
+      margin-bottom: 20px;
     }
 
     .card-btn {
-      position: relative;
-      background: linear-gradient(145deg, rgba(26, 36, 61, 0.9), rgba(15, 22, 38, 0.95));
-      border: 1.5px solid rgba(212, 175, 55, 0.35);
-      border-radius: 24px;
-      padding: 32px 18px;
+      background: rgba(212, 175, 55, 0.1);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 22px;
+      padding: 30px 15px;
       font-size: 2.8rem;
-      color: #f59e0b;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-    }
-
-    .card-btn::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
     }
 
     .card-btn:hover {
-      transform: translateY(-6px) scale(1.03);
-      border-color: rgba(250, 204, 21, 0.8);
-      color: #fbbf24;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(245, 158, 11, 0.3);
-    }
-
-    .card-btn:hover::before {
-      opacity: 1;
+      transform: translateY(-4px) scale(1.03);
+      background: rgba(212, 175, 55, 0.25);
+      border-color: #d4af37;
+      box-shadow: 0 12px 25px rgba(212, 175, 55, 0.3);
     }
 
     .card-btn.visited {
-      background: linear-gradient(145deg, rgba(30, 77, 57, 0.85), rgba(18, 48, 35, 0.95)) !important;
-      color: var(--green-light) !important;
-      border-color: rgba(82, 183, 136, 0.6) !important;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 18px rgba(45, 106, 79, 0.4) !important;
+      background: rgba(34, 197, 94, 0.15) !important;
+      color: #4ade80 !important;
+      border-color: rgba(74, 222, 128, 0.5) !important;
+      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.3) !important;
     }
 
-    /* Page View Management */
     .page {
       display: none !important;
     }
 
     .page.active {
       display: block !important;
-      animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeIn 0.4s ease-in-out;
     }
 
-    @keyframes pageFadeIn {
-      from { opacity: 0; transform: translateY(16px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* REALISTIC BEIGE PARCHMENT ENVELOPE */
-    .envelope-container {
-      position: relative;
-      width: 220px;
-      height: 150px;
-      margin: 25px auto 20px auto;
+    /* REALISTIC BEIGE VINTAGE ENVELOPE */
+    .envelope-interactive {
+      width: 170px;
+      height: 120px;
+      margin: 25px auto 15px;
       cursor: pointer;
-      perspective: 800px;
-      transition: transform 0.4s ease;
+      position: relative;
+      background: #e6d7c3;
+      border-radius: 6px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+      border: 1px solid #c8b49c;
     }
+    .envelope-interactive:hover { transform: scale(1.05); }
 
-    .envelope-container:hover {
-      transform: scale(1.05) translateY(-4px);
-    }
-
-    .envelope-body {
+    .envelope-flap {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #e6d7b8;
-      border-radius: 8px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(160, 130, 80, 0.3);
-      border: 1px solid #c8b48c;
-      overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 85px solid transparent;
+      border-right: 85px solid transparent;
+      border-top: 60px solid #d8c4ac;
+      transform-origin: top;
+      transition: transform 0.4s ease;
+      z-index: 3;
     }
 
-    /* Envelope Flaps */
-    .envelope-flap-bottom {
+    .envelope-pocket {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 0;
       height: 0;
-      border-left: 110px solid transparent;
-      border-right: 110px solid transparent;
-      border-bottom: 85px solid #dfcfab;
+      border-left: 85px solid #decbb5;
+      border-right: 85px solid #decbb5;
+      border-bottom: 60px solid #ceb8a0;
       z-index: 2;
     }
 
-    .envelope-flap-left {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-top: 75px solid transparent;
-      border-bottom: 75px solid transparent;
-      border-left: 120px solid #d8c6a0;
-      z-index: 1;
-    }
-
-    .envelope-flap-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 0;
-      height: 0;
-      border-top: 75px solid transparent;
-      border-bottom: 75px solid transparent;
-      border-right: 120px solid #d1be96;
-      z-index: 1;
-    }
-
-    .envelope-flap-top {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 110px solid transparent;
-      border-right: 110px solid transparent;
-      border-top: 85px solid #cbba92;
-      transform-origin: top;
-      transition: transform 0.6s ease 0.2s, z-index 0.2s 0.4s;
-      z-index: 3;
-    }
-
-    /* Wax Stamp Seal */
     .wax-seal {
       position: absolute;
-      top: 60px;
+      top: 45px;
       left: 50%;
       transform: translateX(-50%);
-      width: 44px;
-      height: 44px;
-      background: radial-gradient(circle, #b91c1c 0%, #7f1d1d 80%);
+      width: 32px;
+      height: 32px;
+      background: radial-gradient(circle, #a82424 0%, #6e1111 100%);
       border-radius: 50%;
       z-index: 4;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.3);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+      border: 1px solid #7a1818;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fef08a;
-      font-size: 1.2rem;
-      border: 2px solid #991b1b;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      color: #d4af37;
+      font-size: 0.8rem;
     }
 
-    .envelope-container.open .envelope-flap-top {
-      transform: rotateX(180deg);
-      z-index: 0;
-    }
-
-    .envelope-container.open .wax-seal {
-      opacity: 0;
-      transform: translateX(-50%) scale(0.5);
-    }
-
-    /* REALISTIC VINTAGE PARCHMENT LETTER PAPER WITH CREASES */
-    .letter-paper {
+    /* REALISTIC CREASED AGED PAPER */
+    .letter-content {
       display: none;
-      text-align: right;
-      background: #f4ebd0;
+      text-align: left;
+      background: #f4eae1;
       background-image: 
-        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-        radial-gradient(circle at 20% 20%, rgba(180, 140, 80, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(140, 100, 50, 0.15) 0%, transparent 50%);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-      padding: 35px 28px;
-      border-radius: 6px;
-      margin: 20px auto;
-      max-height: 400px;
+        linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 20px 20px;
+      padding: 30px 25px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      max-height: 380px;
       overflow-y: auto;
+      border: 1px solid #d4c2ad;
       box-shadow: 
-        0 12px 35px rgba(0, 0, 0, 0.7),
-        inset 0 0 30px rgba(180, 140, 80, 0.35);
-      border: 1px solid #d3c49d;
+        inset 0 0 30px rgba(160, 120, 85, 0.3),
+        0 10px 25px rgba(0,0,0,0.5);
       position: relative;
     }
 
-    /* Paper Creases/Folds Simulation */
-    .letter-paper::before {
-      content: '';
+    /* Vintage Paper Creases Lines Effect */
+    .letter-content::before {
+      content: "";
       position: absolute;
-      top: 33.33%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.2));
-      pointer-events: none;
-    }
-
-    .letter-paper::after {
-      content: '';
-      position: absolute;
-      top: 66.66%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.2));
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        linear-gradient(135deg, transparent 49%, rgba(0,0,0,0.06) 50%, transparent 51%),
+        linear-gradient(45deg, transparent 49%, rgba(0,0,0,0.04) 50%, transparent 51%);
       pointer-events: none;
     }
 
     .letter-text {
-      font-family: 'Cairo', 'Great Vibes', serif;
-      font-size: 1.25rem;
-      line-height: 2;
-      color: #2a1f17;
-      white-space: pre-wrap;
-      direction: rtl;
-      font-weight: 600;
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
+      line-height: 1.4;
+      color: #2c1d11;
+      white-space: pre-line;
     }
 
-    /* REASON GENERATOR CARD */
     .reason-box {
-      background: rgba(18, 28, 48, 0.7);
-      border: 2px dashed var(--gold-primary);
-      padding: 30px 22px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px dashed #d4af37;
+      padding: 25px;
       border-radius: 20px;
-      font-family: 'Cairo', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 600;
+      font-size: 2.3rem;
       color: #f1f5f9;
-      min-height: 140px;
+      min-height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 22px 0;
-      box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.15);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      direction: rtl;
-      line-height: 1.7;
+      margin: 20px 0;
+      box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.15);
+      transition: all 0.3s;
     }
 
-    /* HYPER-REALISTIC TURNTABLE PLAYER */
-    .turntable-deck {
+    /* REALISTIC VINYL PLAYER */
+    .vinyl-container {
       position: relative;
-      width: 270px;
-      height: 270px;
+      width: 220px;
+      height: 220px;
       margin: 20px auto;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border-radius: 24px;
-      padding: 15px;
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.9),
-        inset 0 2px 2px rgba(255, 255, 255, 0.15),
-        0 0 0 2px rgba(212, 175, 55, 0.4);
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .vinyl-platter {
-      position: relative;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: #080b11;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-    }
-
-    /* Realistic Vinyl Grooves */
     .vinyl-record {
-      position: relative;
-      width: 230px;
-      height: 230px;
+      width: 200px;
+      height: 200px;
+      background: 
+        radial-gradient(circle, 
+          #111 0%, #111 15%, 
+          #000 16%, #000 18%, 
+          #222 19%, #111 21%, 
+          #000 22%, #222 35%, 
+          #000 36%, #111 48%, 
+          #000 49%, #222 65%, 
+          #000 66%, #111 80%, 
+          #000 81%, #151515 100%);
       border-radius: 50%;
-      background: repeating-radial-gradient(
-        circle at center,
-        #171921 0px,
-        #171921 2px,
-        #0d0e14 3px,
-        #0d0e14 5px,
-        #222531 6px,
-        #11131a 7px
-      );
-      box-shadow: 0 8px 25px rgba(0,0,0,0.85);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 10px rgba(255,255,255,0.2);
       display: flex;
       justify-content: center;
       align-items: center;
       animation: spin 3s linear infinite;
       animation-play-state: paused;
-      transition: transform 0.5s ease;
-    }
-
-    /* Vinyl Realistic Sheen Reflection */
-    .vinyl-record::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 45deg,
-        rgba(255, 255, 255, 0.12) 0deg,
-        transparent 45deg,
-        rgba(255, 255, 255, 0.08) 180deg,
-        transparent 225deg,
-        rgba(255, 255, 255, 0.12) 360deg
-      );
-      pointer-events: none;
+      border: 2px solid #000;
     }
 
     .vinyl-record.playing {
       animation-play-state: running;
     }
 
-    /* Center Vinyl Label */
-    .vinyl-center-label {
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, #ea580c 0%, #c2410c 70%, #9a3412 100%);
+    .vinyl-center {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle, #d4af37 0%, #8a6d1c 100%);
       border-radius: 50%;
-      border: 3px solid #fef08a;
+      border: 4px solid #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
-      z-index: 2;
+      box-shadow: 0 0 8px rgba(0,0,0,0.6);
     }
 
-    .vinyl-center-label i {
-      color: #fef08a;
-      font-size: 1.6rem;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-    }
-
-    .center-spindle {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      background: linear-gradient(135deg, #e2e8f0, #64748b);
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.8);
-      z-index: 3;
-    }
-
-    /* Metallic Tone Arm (Stylus Arm) */
-    .tone-arm-container {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      width: 60px;
-      height: 160px;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .tone-arm-base {
-      position: absolute;
-      top: 0;
-      right: 10px;
-      width: 32px;
-      height: 32px;
-      background: radial-gradient(circle, #cbd5e1 0%, #475569 80%);
-      border-radius: 50%;
-      border: 2px solid #94a3b8;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    }
-
-    .tone-arm {
-      position: absolute;
-      top: 14px;
-      right: 24px;
-      width: 8px;
-      height: 130px;
-      background: linear-gradient(to right, #94a3b8, #cbd5e1, #64748b);
-      border-radius: 4px;
-      transform-origin: top center;
-      transform: rotate(-28deg);
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: -3px 5px 8px rgba(0,0,0,0.5);
-    }
-
-    .tone-arm-cartridge {
-      position: absolute;
-      bottom: 0;
-      left: -4px;
-      width: 16px;
-      height: 24px;
-      background: #1e293b;
-      border-radius: 3px;
-      border: 1px solid #d4af37;
-    }
-
-    /* Tone arm drops onto record when playing */
-    .turntable-deck.playing .tone-arm {
-      transform: rotate(8deg);
+    .vinyl-center i {
+      color: #111827;
+      font-size: 1.5rem;
     }
 
     @keyframes spin {
       100% { transform: rotate(360deg); }
     }
 
-    /* Action & Back Buttons */
     .action-btn, .back-btn {
       font-family: 'Great Vibes', cursive;
-      background: linear-gradient(135deg, #d4af37 0%, #aa771c 100%);
-      color: #0b1329;
+      background: #d4af37;
+      color: #0b0f19;
       border: none;
-      padding: 10px 32px;
-      border-radius: 30px;
-      font-size: 2.2rem;
+      padding: 8px 30px;
+      border-radius: 25px;
+      font-size: 2.1rem;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
       transition: all 0.3s ease;
-      margin-top: 14px;
-      display: inline-block;
+      margin-top: 10px;
     }
 
-    .action-btn {
-      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-      color: #ffffff;
-      box-shadow: 0 6px 16px var(--orange-glow);
-    }
-
-    .action-btn:hover {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 8px 22px rgba(234, 88, 12, 0.55);
-    }
-
-    .back-btn:hover {
-      transform: translateY(-2px) scale(1.04);
-      background: linear-gradient(135deg, #fcf6ba 0%, #bf953f 100%);
-      box-shadow: 0 8px 22px rgba(212, 175, 55, 0.5);
+    .action-btn:hover, .back-btn:hover {
+      background: #f3e5ab;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Ambient Particle Canvas -->
   <canvas id="glitter-canvas"></canvas>
 
   <div class="container">
@@ -581,36 +344,24 @@
       </div>
     </div>
 
-    <!-- PAGE 1: VINTAGE PARCHMENT LETTER -->
+    <!-- PAGE 1: VINTAGE LETTER -->
     <div id="page-1" class="page">
       <h1 class="title-calligraphy">Anniversary Note 💌</h1>
       
       <div id="envelope-wrapper">
-        <div class="envelope-container" id="envelope" onclick="openLetterAnimation()">
-          <div class="envelope-body">
-            <div class="envelope-flap-bottom"></div>
-            <div class="envelope-flap-left"></div>
-            <div class="envelope-flap-right"></div>
-            <div class="envelope-flap-top"></div>
-            <div class="wax-seal">
-              <i class="fa-solid fa-heart"></i>
-            </div>
-          </div>
+        <div class="envelope-interactive" onclick="openLetterAnimation()">
+          <div class="envelope-flap" id="env-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="wax-seal"><i class="fa-solid fa-heart"></i></div>
         </div>
         <p class="subtitle">Click the envelope to unseal ✨</p>
       </div>
 
-      <div id="letter-content" class="letter-paper">
+      <div id="letter-content" class="letter-content">
         <p class="letter-text">
-<!-- ضع نص الرسالة المكتوبة هنا بين السطرين -->
-إلى من سكن قلبي وأضاء أيامي.. 💚
-
-كل عام ونحن معاً أسطورة حُبٍّ لا تنتهي،
-شكراً لكل لحظة جميلة، ولكل ضحكة شاركتني إياها،
-ولكل موقف أثبت لي فيه أنك السند والأمان.
-
-ذكرى سنوية سعيدة يا أجمل هدايا القدر ✨
-<!-- انتهى نص الرسالة المكتوبة -->
+          <!--ضع نص الرسالة المكتوبة هنا بين الكلمتين-->
+          Write your special letter here... All the sweet memories, stories, and words you want to share!
+          <!--انتهى نص الرسالة المكتوبة-->
         </p>
       </div>
 
@@ -620,10 +371,10 @@
     <!-- PAGE 3: WHY YOU GENERATOR -->
     <div id="page-3" class="page">
       <h1 class="title-calligraphy">Why You? ✨</h1>
-      <p class="subtitle">Click the button below to reveal a reason!</p>
+      <p class="subtitle">Click below to reveal a reason!</p>
       
       <div class="reason-box" id="reason-display">
-        اضغط على الزر واكتشف الأسباب 🧡
+        Click below to reveal reasons! 🧡
       </div>
 
       <button class="action-btn" onclick="generateReason()">Give Me Another Reason 🪄</button>
@@ -631,25 +382,15 @@
       <button class="back-btn" onclick="goHome()">Back</button>
     </div>
 
-    <!-- PAGE 4: VOICE MESSAGE VINYL PLAYER -->
+    <!-- PAGE 4: VOICE MESSAGE VINYL -->
     <div id="page-4" class="page">
       <h1 class="title-calligraphy">A Voice Note For You 🎙️</h1>
-      <p class="subtitle">Play the turntable to listen</p>
+      <p class="subtitle">Play the vintage record to listen</p>
 
-      <div class="turntable-deck" id="turntable">
-        <div class="vinyl-platter">
-          <div class="vinyl-record" id="vinyl">
-            <div class="vinyl-center-label">
-              <i class="fa-solid fa-heart"></i>
-            </div>
-            <div class="center-spindle"></div>
-          </div>
-        </div>
-
-        <div class="tone-arm-container">
-          <div class="tone-arm-base"></div>
-          <div class="tone-arm">
-            <div class="tone-arm-cartridge"></div>
+      <div class="vinyl-container">
+        <div class="vinyl-record" id="vinyl">
+          <div class="vinyl-center">
+            <i class="fa-solid fa-heart"></i>
           </div>
         </div>
       </div>
@@ -678,7 +419,7 @@
     function openSpotify() {
       visitedGifts.add(2);
       document.getElementById('btn-2').classList.add('visited');
-      /* ضع رابط بلايليست سبوتيفاي هنا بين المزدوجتين */
+      /* ضع رابط بلايليست سبوتيفاي هنا */
       window.open('ضع_رابط_بلايليست_سبوتيفاي_هنا', '_blank');
     }
 
@@ -688,57 +429,42 @@
       pauseAudio();
     }
 
-    /* Envelope Opening Animation Logic */
     function openLetterAnimation() {
-      const envelope = document.getElementById('envelope');
-      envelope.classList.add('open');
-      
+      document.getElementById('env-flap').style.transform = 'rotateX(180deg)';
       setTimeout(() => {
         document.getElementById('envelope-wrapper').style.display = 'none';
         document.getElementById('letter-content').style.display = 'block';
-      }, 700);
+      }, 400);
     }
 
-    /* ضع الأسباب باللغة التي تفضلها داخل المصفوفة هنا */
+    /* أسباب باللغة الإنجليزية */
     const reasons = [
-      "أنك تفهمني من نظرة واحدة دون كلام ✨",
-      "ضحكتك التي تجعل يومي كاملاً أجمل 🧡",
-      "أنك تحبني وتدمني في كل حالاتي 💚",
-      "لأن الحياة معك مغامرة مليئة بالدفء والأمان 🎧",
-      "لأنك تملك أصفى وأنقى قلب عرفته في حياتي 🌸"
+      "Because your smile makes my whole day bright! 💚",
+      "Because our inside jokes are unmatched 😂",
+      "Because you understand me with just one look ✨",
+      "Because you always listen to my random stories 🎧",
+      "Because life is simply better with you around 🧡"
     ];
 
     function generateReason() {
       const randomIndex = Math.floor(Math.random() * reasons.length);
       const display = document.getElementById('reason-display');
       display.style.opacity = '0';
-      display.style.transform = 'translateY(6px)';
-      
       setTimeout(() => {
         display.innerText = reasons[randomIndex];
         display.style.opacity = '1';
-        display.style.transform = 'translateY(0)';
-      }, 250);
+      }, 200);
     }
 
-    /* Turntable Audio Controls */
     const audio = document.getElementById('voice-audio');
     const vinyl = document.getElementById('vinyl');
-    const turntable = document.getElementById('turntable');
     const playBtn = document.getElementById('play-btn');
 
     function toggleAudio() {
       if (audio.paused) {
-        audio.play().then(() => {
-          vinyl.classList.add('playing');
-          turntable.classList.add('playing');
-          playBtn.innerText = 'Pause Message ⏸️';
-        }).catch(() => {
-          // Fallback animation if no valid audio src is added yet
-          vinyl.classList.add('playing');
-          turntable.classList.add('playing');
-          playBtn.innerText = 'Pause Message ⏸️';
-        });
+        audio.play();
+        vinyl.classList.add('playing');
+        playBtn.innerText = 'Pause Message ⏸️';
       } else {
         pauseAudio();
       }
@@ -747,15 +473,15 @@
     function pauseAudio() {
       audio.pause();
       vinyl.classList.remove('playing');
-      turntable.classList.remove('playing');
       playBtn.innerText = 'Play Message ▶️';
     }
 
     audio.onended = function() {
-      pauseAudio();
+      vinyl.classList.remove('playing');
+      playBtn.innerText = 'Play Message ▶️';
     };
 
-    /* Ambient Golden Floating Dust Particles Canvas */
+    /* خلفية اللمعان الراقية */
     const canvas = document.getElementById('glitter-canvas');
     const ctx = canvas.getContext('2d');
 
@@ -767,13 +493,13 @@
     resizeCanvas();
 
     const particles = [];
-    const colors = ['#d4af37', '#fcf6ba', '#f97316', '#fdba74', '#ffffff'];
+    const colors = ['#d4af37', '#f3e5ab', '#ffffff', '#cbd5e1'];
 
-    for (let i = 0; i < 65; i++) {
+    for (let i = 0; i < 70; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 3 + 0.8,
+        size: Math.random() * 3 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
         opacity: Math.random(),
         speed: Math.random() * 0.015 + 0.005,
@@ -785,7 +511,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
         p.opacity += p.speed * p.direction;
-        if (p.opacity >= 0.9 || p.opacity <= 0.1) {
+        if (p.opacity >= 1 || p.opacity <= 0.1) {
           p.direction *= -1;
         }
 
@@ -793,7 +519,7 @@
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.opacity;
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 8;
         ctx.shadowColor = p.color;
         ctx.fill();
       });
