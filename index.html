@@ -191,7 +191,7 @@
       white-space: pre-line;
     }
 
-    /* SKY / UNIVERSE CANVAS */
+    /* SKY CANVAS */
     .sky-container {
       position: relative;
       width: 100%;
@@ -284,7 +284,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 2: CONSTELLATIONS & BLACK HOLE -->
+    <!-- PAGE 2: SKY / UNIVERSE -->
     <div id="page-2" class="page">
       <h1 class="title" style="text-transform: none;">Our Constellations</h1>
       <p class="subtitle">Tap the stars & the black hole</p>
@@ -343,7 +343,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('letter-content').style.display = 'block';
     }
 
-    // --- SKY CANVAS LOGIC WITH EXACT DATES & BLACK HOLE ---
+    // --- SKY CANVAS LOGIC ---
     let canvas, ctx;
     let celestialBodies = [];
     let animationFrameId;
@@ -404,7 +404,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // رسم خطوط الأبراج بين النجوم
       ctx.strokeStyle = 'rgba(244, 162, 97, 0.25)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -413,14 +412,12 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       ctx.lineTo(celestialBodies[2].x, celestialBodies[2].y);
       ctx.stroke();
 
-      // رسم الأجرام والنجوم
       celestialBodies.forEach(body => {
         body.pulse += 0.04;
         let currentRadius = body.radius + Math.sin(body.pulse) * (body.isBright ? 2.5 : 1.5);
 
         ctx.save();
         if (body.isBlackHole) {
-          // الثقب الأسود مع هالة متوهجة
           let gradient = ctx.createRadialGradient(body.x, body.y, body.radius * 0.4, body.x, body.y, body.radius * 2.8);
           gradient.addColorStop(0, 'rgba(244, 162, 97, 0.9)');
           gradient.addColorStop(0.5, 'rgba(231, 111, 81, 0.35)');
@@ -438,7 +435,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
           ctx.lineWidth = 2;
           ctx.stroke();
         } else {
-          // النجوم (مع إعطاء 19/9 إضاءة وحجم أسطع)
           ctx.fillStyle = body.clicked ? '#2a9d8f' : body.color;
           ctx.shadowColor = body.color;
           ctx.shadowBlur = body.isBright ? 28 : 12;
@@ -446,7 +442,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
           ctx.arc(body.x, body.y, currentRadius, 0, Math.PI * 2);
           ctx.fill();
 
-          // هالة إضافية لنجم 19/9 ليكون الأكثر سطوعاً
           if (body.isBright) {
             ctx.strokeStyle = 'rgba(255, 221, 89, 0.5)';
             ctx.lineWidth = 2;
@@ -463,7 +458,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
 
     function showConstellationModal(body) {
       const modal = document.getElementById('constellationModal');
-      document.getElementById('modalTitleinnerText' || 'modalTitle').innerText = body.title;
+      document.getElementById('modalTitle').innerText = body.title;
       document.getElementById('modalDesc').innerText = body.desc;
       modal.style.display = 'block';
     }
