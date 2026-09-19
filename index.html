@@ -272,13 +272,15 @@
       border: 1.5px dashed rgba(42, 157, 143, 0.5);
       padding: 30px 20px;
       border-radius: 18px;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
+      font-weight: 500;
       color: #f8fafc;
       min-height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 25px 0;
+      transition: opacity 0.2s ease;
     }
 
     /* VINYL & PLAYER WITH PROGRESS BAR */
@@ -326,7 +328,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 15px;
       border-radius: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .progress-container {
@@ -382,48 +384,11 @@
     }
 
     .back-btn:hover { color: #cbd5e1; }
-
-    .drive-fallback-link {
-      display: block;
-      margin-top: 10px;
-      font-size: 0.78rem;
-      color: #94a3b8;
-      text-decoration: underline;
-    }
-
-    #music-control {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #f1f5f9;
-      cursor: pointer;
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      backdrop-filter: blur(5px);
-    }
-    #music-control.visible { opacity: 1; visibility: visible; }
   </style>
 </head>
 <body>
 
   <div class="bg-hearts" id="hearts-container"></div>
-  
-  <audio id="bg-music" loop preload="auto">
-      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-  </audio>
-  
-  <div id="music-control">
-      <i class="fa-solid fa-volume-high" id="volume-icon"></i>
-  </div>
 
   <div class="container">
     
@@ -481,7 +446,7 @@ Mwah, Truly love you
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 2: SKY CONSTELLATIONS (CANVAS INTERACTIVE) -->
+    <!-- PAGE 2: SKY CONSTELLATIONS -->
     <div id="page-2" class="page">
       <h1 class="title" style="text-transform: none;">Our Constellations</h1>
       <p class="subtitle">Tap the stars & the black hole in the night sky</p>
@@ -524,8 +489,8 @@ Mwah, Truly love you
         </div>
       </div>
 
-      <!-- رابط Google Drive المباشر لتشغيل الصوت -->
-      <audio id="voice-audio" crossorigin="anonymous" preload="metadata">
+      <!-- ملف تسجيلك الصوتي الخاص -->
+      <audio id="voice-audio" preload="metadata">
         <source src="https://lh3.googleusercontent.com/d/12ER5lffvQUcFd01Q6eo2MQZ7EL6BN-SW" type="audio/mp3">
         <source src="https://docs.google.com/uc?export=download&id=12ER5lffvQUcFd01Q6eo2MQZ7EL6BN-SW" type="audio/mpeg">
       </audio>
@@ -542,10 +507,6 @@ Mwah, Truly love you
       </div>
 
       <button class="action-btn" id="play-btn" onclick="toggleAudio()">Play Message</button>
-      
-      <a href="https://drive.google.com/file/d/12ER5lffvQUcFd01Q6eo2MQZ7EL6BN-SW/view?usp=drivesdk" target="_blank" class="drive-fallback-link">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open audio on Google Drive if it doesn't play
-      </a>
 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
@@ -575,37 +536,8 @@ Mwah, Truly love you
       setTimeout(() => { heart.remove(); }, randomDuration * 1000);
     }
     setInterval(createHeart, 350);
-    
-    // موسيقى الخلفية
-    const bgMusic = document.getElementById('bg-music');
-    const musicControl = document.getElementById('music-control');
-    const volumeIcon = document.getElementById('volume-icon');
-    let hasStarted = false;
-
-    function startBackgroundMusic() {
-        if (!hasStarted) {
-            bgMusic.play().then(() => {
-                hasStarted = true;
-                bgMusic.volume = 0.3;
-                musicControl.classList.add('visible');
-            }).catch(error => { console.log("autoplay prevented:", error); });
-        }
-    }
-
-    document.body.addEventListener('click', startBackgroundMusic, { once: false });
-
-    musicControl.addEventListener('click', () => {
-        if (bgMusic.muted) {
-            bgMusic.muted = false;
-            volumeIcon.className = 'fa-solid fa-volume-high';
-        } else {
-            bgMusic.muted = true;
-            volumeIcon.className = 'fa-solid fa-volume-xmark';
-        }
-    });
 
     function openGift(id) {
-      startBackgroundMusic();
       document.getElementById('btn-' + id).classList.add('visited');
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + id).classList.add('active');
@@ -653,7 +585,7 @@ Mwah, Truly love you
       },
       {
         id: '19/9',
-        title: '19/9 🌟 The Big 3 (Brightest Star)',
+        title: '19/9 🌟',
         desc: 'This month has 9/11 and 10/11 and the day we first date (the big 3). This day started everything…',
         center: { x: 0.5, y: 0.65 },
         color: '#f4a261',
@@ -683,7 +615,6 @@ Mwah, Truly love you
       canvas.width = rect.width;
       canvas.height = rect.height;
 
-      // Create random background stars
       backgroundStars = [];
       for (let i = 0; i < 70; i++) {
         backgroundStars.push({
@@ -704,7 +635,6 @@ Mwah, Truly love you
     function animateSky() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw background twinkling stars
       backgroundStars.forEach(s => {
         s.alpha += s.speed;
         if (s.alpha > 1 || s.alpha < 0.2) s.speed = -s.speed;
@@ -716,17 +646,14 @@ Mwah, Truly love you
 
       const time = Date.now() * 0.003;
 
-      // Draw Constellations
       constellationsData.forEach(c => {
         const cx = c.center.x * canvas.width;
         const cy = c.center.y * canvas.height;
 
         if (c.isBlackHole) {
-          // Draw Black Hole
           ctx.save();
           ctx.translate(cx, cy);
           
-          // Glow Aura
           let gradient = ctx.createRadialGradient(0, 0, 10, 0, 0, 30);
           gradient.addColorStop(0, 'rgba(0,0,0,1)');
           gradient.addColorStop(0.5, 'rgba(139, 92, 246, 0.8)');
@@ -737,7 +664,6 @@ Mwah, Truly love you
           ctx.fillStyle = gradient;
           ctx.fill();
 
-          // Black Hole Center
           ctx.beginPath();
           ctx.arc(0, 0, 14, 0, Math.PI * 2);
           ctx.fillStyle = '#000000';
@@ -750,7 +676,6 @@ Mwah, Truly love you
           return;
         }
 
-        // Draw Constellation Lines
         ctx.beginPath();
         c.stars.forEach((s, idx) => {
           const sx = cx + s.dx;
@@ -762,7 +687,6 @@ Mwah, Truly love you
         ctx.lineWidth = c.isBrightest ? 1.5 : 1;
         ctx.stroke();
 
-        // Draw Constellation Stars
         c.stars.forEach((s, idx) => {
           const sx = cx + s.dx;
           const sy = cy + s.dy;
@@ -775,10 +699,9 @@ Mwah, Truly love you
           ctx.shadowBlur = c.isBrightest ? 12 + starGlow * 2 : 6;
           ctx.shadowColor = c.color;
           ctx.fill();
-          ctx.shadowBlur = 0; // reset
+          ctx.shadowBlur = 0;
         });
 
-        // Label below constellation
         ctx.font = c.isBrightest ? 'bold 12px Inter' : '10px Inter';
         ctx.fillStyle = c.color;
         ctx.textAlign = 'center';
@@ -800,7 +723,7 @@ Mwah, Truly love you
         const cy = c.center.y * canvas.height;
         const dist = Math.hypot(clickX - cx, clickY - cy);
 
-        if (dist < 45) { // Click radius
+        if (dist < 45) {
           showModal(c.title, c.desc);
           found = true;
         }
@@ -818,13 +741,19 @@ Mwah, Truly love you
       modal.style.display = 'block';
     }
 
-    // Reasons Generator
+    // Reasons Generator - Updated List
     const reasons = [
       "Because you feel like home to me.",
       "Because your smile makes my whole day bright.",
       "Because you're my boyfriend, best friend, and lover.",
       "Because you understand me with just one look.",
-      "Because life is simply better with you around."
+      "Because life is simply better with you around.",
+      "Cuz you’re you",
+      "You’re the 6 to my 7",
+      "You’re patient with me",
+      "You’re so sweet and thoughtful",
+      "You’re the best. THE BEST",
+      "You make me feel special"
     ];
 
     function generateReason() {
@@ -853,7 +782,6 @@ Mwah, Truly love you
           playBtn.innerText = 'Pause Message';
         }).catch(err => {
           console.log("Audio play error: ", err);
-          alert("تنبيه: إذا لم يعمل الصوت مباشرة، اضغطي على رابط Google Drive في الأسفل لتشغيله.");
         });
       } else {
         pauseAudio();
