@@ -91,7 +91,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* تخطيط الأزرار الثلاثة بشكل مرتب وعصري */
     .grid-3 {
       display: flex;
       flex-direction: column;
@@ -192,7 +191,7 @@
       white-space: pre-line;
     }
 
-    /* SKY CANVAS */
+    /* SKY / UNIVERSE CANVAS */
     .sky-container {
       position: relative;
       width: 100%;
@@ -208,14 +207,16 @@
       position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
       font-size: 0.75rem; color: #94a3b8; background: rgba(15, 23, 42, 0.7);
       padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 5;
     }
 
     .constellation-modal {
       display: none; position: absolute; bottom: 12px; left: 12px; right: 12px;
       background: rgba(15, 23, 42, 0.95); border: 1px solid #f4a261; padding: 15px;
       border-radius: 14px; text-align: left; direction: ltr; z-index: 20;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
-    .constellation-modal h4 { color: #f4a261; font-size: 1rem; margin-bottom: 6px; }
+    .constellation-modal h4 { color: #f4a261; font-size: 1.05rem; margin-bottom: 6px; }
     .constellation-modal p { font-size: 0.85rem; color: #e2e8f0; line-height: 1.4; }
 
     /* REASON BOX */
@@ -283,12 +284,12 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 2: SKY / UNIVERSE -->
+    <!-- PAGE 2: CONSTELLATIONS & BLACK HOLE -->
     <div id="page-2" class="page">
       <h1 class="title" style="text-transform: none;">Our Constellations</h1>
-      <p class="subtitle">Tap the stars & the black hole in the night sky</p>
+      <p class="subtitle">Tap the stars & the black hole</p>
       <div class="sky-container">
-        <span class="sky-hint">Click stars to reveal</span>
+        <span class="sky-hint">Click stars & black hole</span>
         <canvas id="skyCanvas"></canvas>
         <div class="constellation-modal" id="constellationModal">
           <h4 id="modalTitle">Title</h4>
@@ -342,10 +343,10 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('letter-content').style.display = 'block';
     }
 
-    // Sky / Constellation Canvas Logic
+    // --- SKY CANVAS LOGIC WITH EXACT DATES & BLACK HOLE ---
     let canvas, ctx;
-    let stars = [];
-    let selectedStar = null;
+    let celestialBodies = [];
+    let animationFrameId;
 
     function initSkyCanvas() {
       canvas = document.getElementById('skyCanvas');
@@ -354,74 +355,116 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
 
-      stars = [
-        { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 5, title: "First Met", desc: "The day our story officially began in the universe.", clicked: false },
-        { x: canvas.width * 0.5, y: canvas.height * 0.25, radius: 6, title: "First Laugh", desc: "That unforgettable moment you made me laugh uncontrollably.", clicked: false },
-        { x: canvas.width * 0.75, y: canvas.height * 0.4, radius: 5, title: "Late Night Talks", desc: "Hours of talking about everything and nothing at all.", clicked: false },
-        { x: canvas.width * 0.35, y: canvas.height * 0.7, radius: 6, title: "Our Anniversary", desc: "One year of pure love, happiness, and beautiful memories.", clicked: false },
-        { x: canvas.width * 0.7, y: canvas.height * 0.75, radius: 7, title: "Black Hole (My Heart)", desc: "Pulled straight into your gravity and I never want to escape.", isBlackHole: true, clicked: false }
+      celestialBodies = [
+        { 
+          x: canvas.width * 0.22, y: canvas.height * 0.35, radius: 7, 
+          title: "20/10", 
+          desc: "The day that the purest soul came to life, the day that the sun and all the stars realised that their shine is nothing comparing to you..", 
+          color: "#38bdf8", clicked: false, pulse: 0 
+        },
+        { 
+          x: canvas.width * 0.52, y: canvas.height * 0.45, radius: 7, 
+          title: "11/8", 
+          desc: "The day that we first met...\nWho would've known that soulmates can find each other by a random comment? Now I know-", 
+          color: "#fbbf24", clicked: false, pulse: 0 
+        },
+        { 
+          x: canvas.width * 0.35, y: canvas.height * 0.75, radius: 11, 
+          title: "19/9", 
+          desc: "This month has 9/11 and 10/11 and the day we first date (the big 3). This day is the reason why we’re here right now", 
+          color: "#ffdd59", clicked: false, pulse: 0, isBright: true 
+        },
+        { 
+          x: canvas.width * 0.75, y: canvas.height * 0.45, radius: 13, 
+          title: "Black Hole", 
+          desc: "My love for you is bigger than this black hole and anything it could ever swallow.", 
+          isBlackHole: true, clicked: false, pulse: 0 
+        }
       ];
 
-      drawSky();
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animateSky();
 
       canvas.onclick = function(e) {
         const rect = canvas.getBoundingClientRect();
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
 
-        stars.forEach(star => {
-          const dist = Math.hypot(mouseX - star.x, mouseY - star.y);
-          if (dist < 18) {
-            star.clicked = true;
-            showConstellationModal(star);
-            drawSky();
+        celestialBodies.forEach(body => {
+          const dist = Math.hypot(mouseX - body.x, mouseY - body.y);
+          if (dist < 25) {
+            body.clicked = true;
+            showConstellationModal(body);
           }
         });
       };
     }
 
-    function drawSky() {
+    function animateSky() {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // رسم خطوط الكون بين النجوم
+      // رسم خطوط الأبراج بين النجوم
       ctx.strokeStyle = 'rgba(244, 162, 97, 0.25)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      for (let i = 0; i < stars.length - 1; i++) {
-        ctx.moveTo(stars[i].x, stars[i].y);
-        ctx.lineTo(stars[i+1].x, stars[i+1].y);
-      }
+      ctx.moveTo(celestialBodies[0].x, celestialBodies[0].y);
+      ctx.lineTo(celestialBodies[1].x, celestialBodies[1].y);
+      ctx.lineTo(celestialBodies[2].x, celestialBodies[2].y);
       ctx.stroke();
 
-      // رسم النجوم
-      stars.forEach(star => {
+      // رسم الأجرام والنجوم
+      celestialBodies.forEach(body => {
+        body.pulse += 0.04;
+        let currentRadius = body.radius + Math.sin(body.pulse) * (body.isBright ? 2.5 : 1.5);
+
         ctx.save();
-        if (star.isBlackHole) {
-          ctx.fillStyle = '#f4a261';
+        if (body.isBlackHole) {
+          // الثقب الأسود مع هالة متوهجة
+          let gradient = ctx.createRadialGradient(body.x, body.y, body.radius * 0.4, body.x, body.y, body.radius * 2.8);
+          gradient.addColorStop(0, 'rgba(244, 162, 97, 0.9)');
+          gradient.addColorStop(0.5, 'rgba(231, 111, 81, 0.35)');
+          gradient.addColorStop(1, 'transparent');
+          ctx.fillStyle = gradient;
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius + 4, 0, Math.PI * 2);
+          ctx.arc(body.x, body.y, body.radius * 2.8, 0, Math.PI * 2);
           ctx.fill();
+
           ctx.fillStyle = '#050b14';
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.arc(body.x, body.y, body.radius, 0, Math.PI * 2);
           ctx.fill();
+          ctx.strokeStyle = '#f4a261';
+          ctx.lineWidth = 2;
+          ctx.stroke();
         } else {
-          ctx.fillStyle = star.clicked ? '#2a9d8f' : '#f8fafc';
+          // النجوم (مع إعطاء 19/9 إضاءة وحجم أسطع)
+          ctx.fillStyle = body.clicked ? '#2a9d8f' : body.color;
+          ctx.shadowColor = body.color;
+          ctx.shadowBlur = body.isBright ? 28 : 12;
           ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-          ctx.shadowColor = '#f4a261';
-          ctx.shadowBlur = 10;
+          ctx.arc(body.x, body.y, currentRadius, 0, Math.PI * 2);
           ctx.fill();
+
+          // هالة إضافية لنجم 19/9 ليكون الأكثر سطوعاً
+          if (body.isBright) {
+            ctx.strokeStyle = 'rgba(255, 221, 89, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(body.x, body.y, currentRadius + 5 + Math.sin(body.pulse)*2, 0, Math.PI * 2);
+            ctx.stroke();
+          }
         }
         ctx.restore();
       });
+
+      animationFrameId = requestAnimationFrame(animateSky);
     }
 
-    function showConstellationModal(star) {
+    function showConstellationModal(body) {
       const modal = document.getElementById('constellationModal');
-      document.getElementById('modalTitle').innerText = star.title;
-      document.getElementById('modalDesc').innerText = star.desc;
+      document.getElementById('modalTitleinnerText' || 'modalTitle').innerText = body.title;
+      document.getElementById('modalDesc').innerText = body.desc;
       modal.style.display = 'block';
     }
 
