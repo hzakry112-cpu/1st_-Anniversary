@@ -195,12 +195,12 @@
     .sky-container {
       position: relative;
       width: 100%;
-      height: 380px;
+      height: 340px;
       background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #050b14 70%, #02040a 100%);
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.15);
-      margin: 15px 0;
+      margin: 10px 0 15px 0;
     }
     #skyCanvas { width: 100%; height: 100%; display: block; cursor: pointer; }
     .sky-hint {
@@ -210,10 +210,16 @@
       z-index: 5;
     }
 
+    /* صندوق العرض منفصل تماماً بالأسفل عشان ما يغطي النجوم */
     .constellation-modal {
-      display: none; position: absolute; bottom: 12px; left: 12px; right: 12px;
-      background: rgba(15, 23, 42, 0.95); border: 1px solid #f4a261; padding: 15px;
-      border-radius: 14px; text-align: left; direction: ltr; z-index: 20;
+      display: none; 
+      background: rgba(15, 23, 42, 0.95); 
+      border: 1px solid #f4a261; 
+      padding: 15px;
+      border-radius: 14px; 
+      text-align: left; 
+      direction: ltr; 
+      margin-bottom: 15px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
     .constellation-modal h4 { color: #f4a261; font-size: 1.05rem; margin-bottom: 6px; }
@@ -288,14 +294,18 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
     <div id="page-2" class="page">
       <h1 class="title" style="text-transform: none;">Our Constellations</h1>
       <p class="subtitle">Tap the stars & the black hole</p>
+      
       <div class="sky-container">
         <span class="sky-hint">Click stars & black hole</span>
         <canvas id="skyCanvas"></canvas>
-        <div class="constellation-modal" id="constellationModal">
-          <h4 id="modalTitle">Title</h4>
-          <p id="modalDesc">Description...</p>
-        </div>
       </div>
+
+      <!-- صندوق النص صار تحت الكانفاس بمسافة آمنة وما يغطي شي -->
+      <div class="constellation-modal" id="constellationModal">
+        <h4 id="modalTitle">Title</h4>
+        <p id="modalDesc">Description...</p>
+      </div>
+
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
@@ -343,7 +353,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('letter-content').style.display = 'block';
     }
 
-    // --- SKY CANVAS LOGIC ---
+    // --- SKY CANVAS LOGIC WITH BALANCED SPACING ---
     let canvas, ctx;
     let celestialBodies = [];
     let animationFrameId;
@@ -355,27 +365,28 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
 
+      // إحداثيات موزعة بشكل جميل ومتسّع داخل الفضاء
       celestialBodies = [
         { 
-          x: canvas.width * 0.22, y: canvas.height * 0.35, radius: 7, 
+          x: canvas.width * 0.20, y: canvas.height * 0.30, radius: 7, 
           title: "20/10", 
           desc: "The day that the purest soul came to life, the day that the sun and all the stars realised that their shine is nothing comparing to you..", 
           color: "#38bdf8", clicked: false, pulse: 0 
         },
         { 
-          x: canvas.width * 0.52, y: canvas.height * 0.45, radius: 7, 
+          x: canvas.width * 0.50, y: canvas.height * 0.25, radius: 7, 
           title: "11/8", 
           desc: "The day that we first met...\nWho would've known that soulmates can find each other by a random comment? Now I know-", 
           color: "#fbbf24", clicked: false, pulse: 0 
         },
         { 
-          x: canvas.width * 0.35, y: canvas.height * 0.75, radius: 11, 
+          x: canvas.width * 0.35, y: canvas.height * 0.70, radius: 11, 
           title: "19/9", 
           desc: "This month has 9/11 and 10/11 and the day we first date (the big 3). This day is the reason why we’re here right now", 
           color: "#ffdd59", clicked: false, pulse: 0, isBright: true 
         },
         { 
-          x: canvas.width * 0.75, y: canvas.height * 0.45, radius: 13, 
+          x: canvas.width * 0.78, y: canvas.height * 0.55, radius: 13, 
           title: "Black Hole", 
           desc: "My love for you is bigger than this black hole and anything it could ever swallow.", 
           isBlackHole: true, clicked: false, pulse: 0 
@@ -392,7 +403,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
 
         celestialBodies.forEach(body => {
           const dist = Math.hypot(mouseX - body.x, mouseY - body.y);
-          if (dist < 25) {
+          if (dist < 28) {
             body.clicked = true;
             showConstellationModal(body);
           }
@@ -404,7 +415,8 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(244, 162, 97, 0.25)';
+      // رسم خطوط الأبراج بين النجوم لتكون متصلة ببعض بأسلوب فلكي ساحر
+      ctx.strokeStyle = 'rgba(244, 162, 97, 0.3)';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(celestialBodies[0].x, celestialBodies[0].y);
@@ -437,16 +449,16 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
         } else {
           ctx.fillStyle = body.clicked ? '#2a9d8f' : body.color;
           ctx.shadowColor = body.color;
-          ctx.shadowBlur = body.isBright ? 28 : 12;
+          ctx.shadowBlur = body.isBright ? 30 : 12;
           ctx.beginPath();
           ctx.arc(body.x, body.y, currentRadius, 0, Math.PI * 2);
           ctx.fill();
 
           if (body.isBright) {
-            ctx.strokeStyle = 'rgba(255, 221, 89, 0.5)';
+            ctx.strokeStyle = 'rgba(255, 221, 89, 0.6)';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            ctx.arc(body.x, body.y, currentRadius + 5 + Math.sin(body.pulse)*2, 0, Math.PI * 2);
+            ctx.arc(body.x, body.y, currentRadius + 6 + Math.sin(body.pulse)*2, 0, Math.PI * 2);
             ctx.stroke();
           }
         }
