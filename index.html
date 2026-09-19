@@ -91,10 +91,11 @@
       letter-spacing: 0.2px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+    /* تخطيط الأزرار الثلاثة بشكل مرتب وعصري */
+    .grid-3 {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       margin-bottom: 25px;
     }
 
@@ -102,21 +103,28 @@
       background: rgba(255, 255, 255, 0.04);
       color: #cbd5e1;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px 15px;
-      font-size: 1.7rem;
+      border-radius: 18px;
+      padding: 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 12px;
+    }
+
+    .card-btn i {
+      font-size: 1.3rem;
+      color: #f4a261;
     }
 
     .card-btn:hover {
       background: rgba(42, 157, 143, 0.18);
       border-color: rgba(42, 157, 143, 0.6);
       color: #2a9d8f;
-      transform: translateY(-5px) scale(1.03);
+      transform: translateY(-4px) scale(1.02);
       box-shadow: 0 12px 25px rgba(42, 157, 143, 0.25);
     }
 
@@ -219,51 +227,13 @@
       display: flex; align-items: center; justify-content: center; margin: 25px 0;
     }
 
-    /* CAKE GAME STYLES */
-    .cake-options { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
-    .cake-option-btn {
-      background: rgba(255, 255, 255, 0.05); color: #e2e8f0;
-      border: 1px solid rgba(255, 255, 255, 0.12); padding: 12px 20px;
-      border-radius: 14px; font-size: 0.95rem; cursor: pointer; transition: all 0.25s ease;
-    }
-    .cake-option-btn:hover {
-      background: rgba(244, 162, 97, 0.2); border-color: #f4a261; color: #f4a261;
-    }
-
-    .cake-preview-container {
-      background: rgba(2, 6, 23, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 15px;
-      margin: 15px 0;
-      height: 290px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #cakeCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .promise-text {
-      font-size: 0.85rem; color: #94a3b8; font-style: italic; margin-top: 15px; line-height: 1.5;
-    }
-
     .action-btn {
       background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
       color: #ffffff; border: none; padding: 13px 28px; border-radius: 30px;
       font-size: 0.95rem; font-weight: 500; cursor: pointer; width: 100%;
       box-shadow: 0 6px 20px rgba(231, 111, 81, 0.3);
     }
+    
     .back-btn {
       background: transparent; color: #64748b; border: none; padding: 10px 24px;
       border-radius: 30px; font-size: 0.85rem; cursor: pointer; margin-top: 5px;
@@ -282,11 +252,16 @@
       <h1 class="title">HAPPY ANNIVERSARY!</h1>
       <p class="subtitle">Happy anniversary for my one and only love!</p>
 
-      <div class="grid">
-        <button class="card-btn" id="btn-1" onclick="openGift(1)"><i class="fa-regular fa-envelope"></i></button>
-        <button class="card-btn" id="btn-2" onclick="openGift(2)"><i class="fa-solid fa-user-astronaut"></i></button>
-        <button class="card-btn" id="btn-3" onclick="openGift(3)"><i class="fa-regular fa-compass"></i></button>
-        <button class="card-btn" id="btn-4" onclick="openGift(4)"><i class="fa-solid fa-cake-candles"></i></button>
+      <div class="grid-3">
+        <button class="card-btn" id="btn-1" onclick="openGift(1)">
+          <i class="fa-regular fa-envelope"></i> The Letter
+        </button>
+        <button class="card-btn" id="btn-2" onclick="openGift(2)">
+          <i class="fa-solid fa-user-astronaut"></i> Our Universe
+        </button>
+        <button class="card-btn" id="btn-3" onclick="openGift(3)">
+          <i class="fa-regular fa-heart"></i> Why You?
+        </button>
       </div>
     </div>
 
@@ -308,7 +283,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 2: SKY -->
+    <!-- PAGE 2: SKY / UNIVERSE -->
     <div id="page-2" class="page">
       <h1 class="title" style="text-transform: none;">Our Constellations</h1>
       <p class="subtitle">Tap the stars & the black hole in the night sky</p>
@@ -332,28 +307,10 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 4: CAKE BAKING GAME -->
-    <div id="page-4" class="page">
-      <h1 class="title" style="text-transform: none; font-size: 1.8rem;">Bake a Cake for Us</h1>
-      <p id="cake-step-title" class="subtitle" style="margin-bottom: 10px;">Step 1: Choose the 1st cake layer</p>
-
-      <div class="cake-preview-container" id="cake-preview-box">
-        <canvas id="cakeCanvas"></canvas>
-      </div>
-
-      <div class="cake-options" id="cake-options-container"></div>
-
-      <div id="cake-promise-area" style="display: none;">
-        <p class="promise-text">I’ll make it for us one day that’s a promise (you’ll wash the dishes tho)</p>
-        <button class="action-btn" style="margin-top: 15px;" onclick="initCakeGame()">Bake Another Cake</button>
-      </div>
-
-      <button class="back-btn" onclick="goHome()">Back to Home</button>
-    </div>
-
   </div>
 
   <script>
+    // خلفية القلوب المتحركة
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
       const heart = document.createElement('i');
@@ -371,12 +328,13 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + id).classList.add('active');
       if (id === 2) setTimeout(initSkyCanvas, 100);
-      if (id === 4) initCakeGame();
     }
 
     function goHome() {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('home-page').classList.add('active');
+      const modal = document.getElementById('constellationModal');
+      if (modal) modal.style.display = 'none';
     }
 
     function openLetterAnimation() {
@@ -384,219 +342,99 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('letter-content').style.display = 'block';
     }
 
+    // Sky / Constellation Canvas Logic
     let canvas, ctx;
+    let stars = [];
+    let selectedStar = null;
+
     function initSkyCanvas() {
       canvas = document.getElementById('skyCanvas');
       if (!canvas) return;
       ctx = canvas.getContext('2d');
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
-      ctx.fillStyle = '#050b14';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
 
-    const reasons = ["Because you feel like home.", "Cuz you’re you", "You’re the best. THE BEST", "You make me feel special"];
-    function generateReason() {
-      document.getElementById('reason-display').innerText = reasons[Math.floor(Math.random() * reasons.length)];
-    }
+      stars = [
+        { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 5, title: "First Met", desc: "The day our story officially began in the universe.", clicked: false },
+        { x: canvas.width * 0.5, y: canvas.height * 0.25, radius: 6, title: "First Laugh", desc: "That unforgettable moment you made me laugh uncontrollably.", clicked: false },
+        { x: canvas.width * 0.75, y: canvas.height * 0.4, radius: 5, title: "Late Night Talks", desc: "Hours of talking about everything and nothing at all.", clicked: false },
+        { x: canvas.width * 0.35, y: canvas.height * 0.7, radius: 6, title: "Our Anniversary", desc: "One year of pure love, happiness, and beautiful memories.", clicked: false },
+        { x: canvas.width * 0.7, y: canvas.height * 0.75, radius: 7, title: "Black Hole (My Heart)", desc: "Pulled straight into your gravity and I never want to escape.", isBlackHole: true, clicked: false }
+      ];
 
-    // --- CAKE GAME ENGINE V2 ---
-    let cakeState = { layer1: null, frosting1: null, layer2: null, frosting2: null, topping: null, pastelColor: null, step: 1 };
-    let cakeAnimCanvas, cakeCtx;
-    let animItems = [];
-    let fallingElements = [];
+      drawSky();
 
-    const colorHex = {
-      'Carrot Cake': '#d97706', 'Red Velvet': '#b91c1c', 'Coffee Cake': '#78350f', 'Vanilla Cake': '#fef08a', 'Chocolate Cake': '#451a03',
-      'White (Vanilla)': '#f8fafc', 'Chocolate Frosting': '#5c3a21', 'Strawberry Frosting': '#f43f5e'
-    };
+      canvas.onclick = function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
 
-    const pastelHex = {
-      'Pink': '#fbcfe8', 'Brown': '#d7ccc8', 'Red': '#fecaca', 'Orange': '#fed7aa', 'Yellow': '#fef08a'
-    };
-
-    function initCakeGame() {
-      cakeState = { layer1: null, frosting1: null, layer2: null, frosting2: null, topping: null, pastelColor: null, step: 1 };
-      document.getElementById('cake-promise-area').style.display = 'none';
-      document.getElementById('cake-options-container').style.display = 'flex';
-      
-      cakeAnimCanvas = document.getElementById('cakeCanvas');
-      cakeCtx = cakeAnimCanvas.getContext('2d');
-      cakeAnimCanvas.width = cakeAnimCanvas.parentElement.clientWidth;
-      cakeAnimCanvas.height = cakeAnimCanvas.parentElement.clientHeight;
-
-      animItems = [];
-      fallingElements = [];
-      renderCakeStep();
-      requestAnimationFrame(updateCakeAnimation);
-    }
-
-    function renderCakeStep() {
-      const titleEl = document.getElementById('cake-step-title');
-      const optionsContainer = document.getElementById('cake-options-container');
-      optionsContainer.innerHTML = '';
-
-      if (cakeState.step === 1) {
-        titleEl.innerText = "Step 1: Choose the 1st cake layer";
-        ['Carrot Cake', 'Red Velvet', 'Coffee Cake', 'Vanilla Cake', 'Chocolate Cake'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'layer1'); cakeState.layer1 = opt; cakeState.step++; renderCakeStep(); }));
-        });
-      } else if (cakeState.step === 2) {
-        titleEl.innerText = "Step 2: Choose middle frosting";
-        ['White (Vanilla)', 'Chocolate Frosting', 'Strawberry Frosting'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'frosting1'); cakeState.frosting1 = opt; cakeState.step++; renderCakeStep(); }));
-        });
-      } else if (cakeState.step === 3) {
-        titleEl.innerText = "Step 3: Choose the 2nd cake layer";
-        ['Carrot Cake', 'Red Velvet', 'Coffee Cake', 'Vanilla Cake', 'Chocolate Cake'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'layer2'); cakeState.layer2 = opt; cakeState.step++; renderCakeStep(); }));
-        });
-      } else if (cakeState.step === 4) {
-        titleEl.innerText = "Step 4: Choose top frosting";
-        ['White (Vanilla)', 'Chocolate Frosting', 'Strawberry Frosting'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'frosting2'); cakeState.frosting2 = opt; cakeState.step++; renderCakeStep(); }));
-        });
-      } else if (cakeState.step === 5) {
-        titleEl.innerText = "Step 5: Choose Toppings (Falling down!)";
-        ['Sprinkles', 'Strawberries', 'Mango Slices'].forEach(opt => {
-          triggerFallingToppings(opt);
-          cakeState.topping = opt;
-          cakeState.step++;
-          renderCakeStep();
-        });
-      } else if (cakeState.step === 6) {
-        titleEl.innerText = "Step 6: Choose Pastel Side Frosting Color";
-        ['Pink', 'Brown', 'Red', 'Orange', 'Yellow'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { cakeState.pastelColor = opt; cakeState.step++; finalizeCake(); }));
-        });
-      }
-    }
-
-    function createOptBtn(text, callback) {
-      const btn = document.createElement('button');
-      btn.className = 'cake-option-btn';
-      btn.innerText = text;
-      btn.onclick = callback;
-      return btn;
-    }
-
-    function addLayerAnim(name, type) {
-      let targetY = 195;
-      if (type === 'frosting1') targetY = 170;
-      if (type === 'layer2') targetY = 135;
-      if (type === 'frosting2') targetY = 110;
-
-      animItems.push({
-        type: type,
-        name: name,
-        color: colorHex[name] || '#ccc',
-        y: -60,
-        targetY: targetY,
-        alpha: 0
-      });
-    }
-
-    function triggerFallingToppings(type) {
-      for(let i=0; i<18; i++) {
-        fallingElements.push({
-          subType: type,
-          x: cakeAnimCanvas.width/2 - 70 + Math.random() * 140,
-          y: -20 - Math.random() * 80,
-          targetY: 95 + Math.random() * 15,
-          speed: Math.random() * 4 + 3,
-          color: ['#f43f5e', '#38bdf8', '#fbbf24', '#a855f7', '#4ade80'][Math.floor(Math.random()*5)]
-        });
-      }
-    }
-
-    function updateCakeAnimation() {
-      cakeCtx.clearRect(0, 0, cakeAnimCanvas.width, cakeAnimCanvas.height);
-
-      let centerX = cakeAnimCanvas.width / 2;
-
-      // رسم الصحن السفلي
-      cakeCtx.fillStyle = '#cbd5e1';
-      cakeCtx.beginPath();
-      cakeCtx.ellipse(centerX, 235, 115, 12, 0, 0, Math.PI * 2);
-      cakeCtx.fill();
-
-      // رسم طبقات الكيك مع الفروستينج الجانبي الباستيل إن وجد
-      animItems.forEach(item => {
-        if (item.y < item.targetY) {
-          item.y += 7;
-          if(item.y > item.targetY) item.y = item.targetY;
-        }
-
-        cakeCtx.save();
-        let h = (item.type.includes('frosting')) ? 22 : 32;
-        let w = 150;
-
-        // إذا تم اختيار لون الباستيل الجانبي، نرسم الفروستينج الخارجي يغطي الأطراف
-        if (cakeState.pastelColor && pastelHex[cakeState.pastelColor]) {
-          cakeCtx.fillStyle = pastelHex[cakeState.pastelColor];
-          cakeCtx.beginPath();
-          cakeCtx.roundRect(centerX - w/2 - 4, item.y - 2, w + 8, h + 4, 8);
-          cakeCtx.fill();
-        }
-
-        // رسم جسم الطبقة الداخلية
-        cakeCtx.fillStyle = item.color;
-        cakeCtx.beginPath();
-        cakeCtx.roundRect(centerX - w/2, item.y, w, h, 6);
-        cakeCtx.fill();
-
-        // رسم تفاصيل فراغات الكيك الداخلية لتشبه نسيج الكيك الحقيقي
-        if (!item.type.includes('frosting')) {
-          cakeCtx.strokeStyle = 'rgba(0,0,0,0.18)';
-          cakeCtx.lineWidth = 1.5;
-          for(let pX = centerX - w/2 + 15; pX < centerX + w/2 - 10; pX += 20) {
-            cakeCtx.beginPath();
-            cakeCtx.arc(pX, item.y + h/2, 2.5, 0, Math.PI*2);
-            cakeCtx.stroke();
+        stars.forEach(star => {
+          const dist = Math.hypot(mouseX - star.x, mouseY - star.y);
+          if (dist < 18) {
+            star.clicked = true;
+            showConstellationModal(star);
+            drawSky();
           }
-        }
-        cakeCtx.restore();
-      });
-
-      // تحديث وتناثر التوبينجز المرسومة من فوق
-      fallingElements.forEach(el => {
-        if (el.y < el.targetY) {
-          el.y += el.speed;
-          if (el.y > el.targetY) el.y = el.targetY;
-        }
-
-        cakeCtx.save();
-        if (el.subType === 'Strawberries') {
-          // رسم شرايح فراولة صغيرة
-          cakeCtx.fillStyle = '#ef4444';
-          cakeCtx.beginPath();
-          cakeCtx.ellipse(el.x, el.y, 6, 8, 0, 0, Math.PI * 2);
-          cakeCtx.fill();
-          cakeCtx.fillStyle = '#15803d'; // الورقة الخضراء الصغيرة فوق الفراولة
-          cakeCtx.fillRect(el.x - 2, el.y - 10, 4, 3);
-        } else if (el.subType === 'Mango Slices') {
-          // رسم شرايح مانجو صفراء مقوسة
-          cakeCtx.fillStyle = '#fbbf24';
-          cakeCtx.beginPath();
-          cakeCtx.roundRect(el.x - 7, el.y - 4, 14, 6, 3);
-          cakeCtx.fill();
-        } else {
-          // رسم سبرينكلز ملونة مرسومة
-          cakeCtx.fillStyle = el.color;
-          cakeCtx.beginPath();
-          cakeCtx.roundRect(el.x - 4, el.y - 2, 8, 4, 2);
-          cakeCtx.fill();
-        }
-        cakeCtx.restore();
-      });
-
-      requestAnimationFrame(updateCakeAnimation);
+        });
+      };
     }
 
-    function finalizeCake() {
-      document.getElementById('cake-step-title').innerText = "Tada! Happy Anniversary! 🎉";
-      document.getElementById('cake-options-container').style.display = 'none';
-      document.getElementById('cake-promise-area').style.display = 'block';
+    function drawSky() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // رسم خطوط الكون بين النجوم
+      ctx.strokeStyle = 'rgba(244, 162, 97, 0.25)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      for (let i = 0; i < stars.length - 1; i++) {
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[i+1].x, stars[i+1].y);
+      }
+      ctx.stroke();
+
+      // رسم النجوم
+      stars.forEach(star => {
+        ctx.save();
+        if (star.isBlackHole) {
+          ctx.fillStyle = '#f4a261';
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius + 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#050b14';
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillStyle = star.clicked ? '#2a9d8f' : '#f8fafc';
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.shadowColor = '#f4a261';
+          ctx.shadowBlur = 10;
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+    }
+
+    function showConstellationModal(star) {
+      const modal = document.getElementById('constellationModal');
+      document.getElementById('modalTitle').innerText = star.title;
+      document.getElementById('modalDesc').innerText = star.desc;
+      modal.style.display = 'block';
+    }
+
+    // Why You Reasons
+    const reasons = [
+      "Because you feel like home.", 
+      "Cuz you’re you and nobody else compares.", 
+      "You’re the best. THE ABSOLUTE BEST.", 
+      "You make me feel special in every single way."
+    ];
+    function generateReason() {
+      const display = document.getElementById('reason-display');
+      display.innerText = reasons[Math.floor(Math.random() * reasons.length)];
     }
   </script>
 </body>
