@@ -236,7 +236,7 @@
       border-radius: 20px;
       padding: 15px;
       margin: 15px 0;
-      height: 280px;
+      height: 290px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -245,7 +245,6 @@
       overflow: hidden;
     }
 
-    /* Canvas للأنيميشن (نزول الكيك والتوبينجز) */
     #cakeCanvas {
       position: absolute;
       top: 0;
@@ -355,7 +354,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
   </div>
 
   <script>
-    // الألوب المتحركة للخلفية
     const heartsContainer = document.getElementById('hearts-container');
     function createHeart() {
       const heart = document.createElement('i');
@@ -386,7 +384,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('letter-content').style.display = 'block';
     }
 
-    // Sky Canvas (مختصر)
     let canvas, ctx;
     function initSkyCanvas() {
       canvas = document.getElementById('skyCanvas');
@@ -394,7 +391,6 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       ctx = canvas.getContext('2d');
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
-      // رسم مبسط للسماء والنجوم
       ctx.fillStyle = '#050b14';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -404,15 +400,19 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       document.getElementById('reason-display').innerText = reasons[Math.floor(Math.random() * reasons.length)];
     }
 
-    // --- CAKE GAME ENGINE WITH ANIMATIONS ---
+    // --- CAKE GAME ENGINE V2 ---
     let cakeState = { layer1: null, frosting1: null, layer2: null, frosting2: null, topping: null, pastelColor: null, step: 1 };
     let cakeAnimCanvas, cakeCtx;
     let animItems = [];
+    let fallingElements = [];
 
     const colorHex = {
       'Carrot Cake': '#d97706', 'Red Velvet': '#b91c1c', 'Coffee Cake': '#78350f', 'Vanilla Cake': '#fef08a', 'Chocolate Cake': '#451a03',
-      'White (Vanilla)': '#f8fafc', 'Chocolate Frosting': '#5c3a21', 'Strawberry Frosting': '#f43f5e',
-      'Pink': '#f472b6', 'Brown': '#a855f7', 'Red': '#ef4444', 'Orange': '#fb923c', 'Yellow': '#facc15'
+      'White (Vanilla)': '#f8fafc', 'Chocolate Frosting': '#5c3a21', 'Strawberry Frosting': '#f43f5e'
+    };
+
+    const pastelHex = {
+      'Pink': '#fbcfe8', 'Brown': '#d7ccc8', 'Red': '#fecaca', 'Orange': '#fed7aa', 'Yellow': '#fef08a'
     };
 
     function initCakeGame() {
@@ -426,6 +426,7 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       cakeAnimCanvas.height = cakeAnimCanvas.parentElement.clientHeight;
 
       animItems = [];
+      fallingElements = [];
       renderCakeStep();
       requestAnimationFrame(updateCakeAnimation);
     }
@@ -438,27 +439,30 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
       if (cakeState.step === 1) {
         titleEl.innerText = "Step 1: Choose the 1st cake layer";
         ['Carrot Cake', 'Red Velvet', 'Coffee Cake', 'Vanilla Cake', 'Chocolate Cake'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 1); cakeState.layer1 = opt; cakeState.step++; renderCakeStep(); }));
+          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'layer1'); cakeState.layer1 = opt; cakeState.step++; renderCakeStep(); }));
         });
       } else if (cakeState.step === 2) {
         titleEl.innerText = "Step 2: Choose middle frosting";
         ['White (Vanilla)', 'Chocolate Frosting', 'Strawberry Frosting'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'f1'); cakeState.frosting1 = opt; cakeState.step++; renderCakeStep(); }));
+          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'frosting1'); cakeState.frosting1 = opt; cakeState.step++; renderCakeStep(); }));
         });
       } else if (cakeState.step === 3) {
         titleEl.innerText = "Step 3: Choose the 2nd cake layer";
         ['Carrot Cake', 'Red Velvet', 'Coffee Cake', 'Vanilla Cake', 'Chocolate Cake'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 2); cakeState.layer2 = opt; cakeState.step++; renderCakeStep(); }));
+          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'layer2'); cakeState.layer2 = opt; cakeState.step++; renderCakeStep(); }));
         });
       } else if (cakeState.step === 4) {
         titleEl.innerText = "Step 4: Choose top frosting";
         ['White (Vanilla)', 'Chocolate Frosting', 'Strawberry Frosting'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'f2'); cakeState.frosting2 = opt; cakeState.step++; renderCakeStep(); }));
+          optionsContainer.appendChild(createOptBtn(opt, () => { addLayerAnim(opt, 'frosting2'); cakeState.frosting2 = opt; cakeState.step++; renderCakeStep(); }));
         });
       } else if (cakeState.step === 5) {
         titleEl.innerText = "Step 5: Choose Toppings (Falling down!)";
         ['Sprinkles', 'Strawberries', 'Mango Slices'].forEach(opt => {
-          optionsContainer.appendChild(createOptBtn(opt, () => { addFallingToppings(opt); cakeState.topping = opt; cakeState.step++; renderCakeStep(); }));
+          triggerFallingToppings(opt);
+          cakeState.topping = opt;
+          cakeState.step++;
+          renderCakeStep();
         });
       } else if (cakeState.step === 6) {
         titleEl.innerText = "Step 6: Choose Pastel Side Frosting Color";
@@ -477,25 +481,30 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
     }
 
     function addLayerAnim(name, type) {
+      let targetY = 195;
+      if (type === 'frosting1') targetY = 170;
+      if (type === 'layer2') targetY = 135;
+      if (type === 'frosting2') targetY = 110;
+
       animItems.push({
         type: type,
         name: name,
         color: colorHex[name] || '#ccc',
-        y: -50,
-        targetY: type === 1 ? 190 : (type === 'f1' ? 165 : (type === 2 ? 135 : 110)),
+        y: -60,
+        targetY: targetY,
         alpha: 0
       });
     }
 
-    function addFallingToppings(type) {
-      for(let i=0; i<15; i++) {
-        animItems.push({
-          type: 'topping',
+    function triggerFallingToppings(type) {
+      for(let i=0; i<18; i++) {
+        fallingElements.push({
           subType: type,
-          x: Math.random() * 200 + 100,
-          y: -20 - Math.random() * 100,
-          targetY: 85 + Math.random() * 20,
-          speed: Math.random() * 4 + 3
+          x: cakeAnimCanvas.width/2 - 70 + Math.random() * 140,
+          y: -20 - Math.random() * 80,
+          targetY: 95 + Math.random() * 15,
+          speed: Math.random() * 4 + 3,
+          color: ['#f43f5e', '#38bdf8', '#fbbf24', '#a855f7', '#4ade80'][Math.floor(Math.random()*5)]
         });
       }
     }
@@ -503,37 +512,80 @@ Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and 
     function updateCakeAnimation() {
       cakeCtx.clearRect(0, 0, cakeAnimCanvas.width, cakeAnimCanvas.height);
 
-      // رسم الصحن الثابت تحت الكيك
+      let centerX = cakeAnimCanvas.width / 2;
+
+      // رسم الصحن السفلي
       cakeCtx.fillStyle = '#cbd5e1';
       cakeCtx.beginPath();
-      cakeCtx.ellipse(cakeAnimCanvas.width/2, 230, 110, 12, 0, 0, Math.PI * 2);
+      cakeCtx.ellipse(centerX, 235, 115, 12, 0, 0, Math.PI * 2);
       cakeCtx.fill();
 
-      // تحريك ورسم العناصر
+      // رسم طبقات الكيك مع الفروستينج الجانبي الباستيل إن وجد
       animItems.forEach(item => {
         if (item.y < item.targetY) {
-          item.y += 8; // سرعة النزول من فوق
+          item.y += 7;
           if(item.y > item.targetY) item.y = item.targetY;
         }
 
         cakeCtx.save();
-        if(item.type === 'topping') {
-          cakeCtx.fillStyle = item.subType === 'Strawberries' ? '#ef4444' : (item.subType === 'Mango Slices' ? '#fbbf24' : '#38bdf8');
+        let h = (item.type.includes('frosting')) ? 22 : 32;
+        let w = 150;
+
+        // إذا تم اختيار لون الباستيل الجانبي، نرسم الفروستينج الخارجي يغطي الأطراف
+        if (cakeState.pastelColor && pastelHex[cakeState.pastelColor]) {
+          cakeCtx.fillStyle = pastelHex[cakeState.pastelColor];
           cakeCtx.beginPath();
-          cakeCtx.arc(item.x, item.y, 5, 0, Math.PI*2);
+          cakeCtx.roundRect(centerX - w/2 - 4, item.y - 2, w + 8, h + 4, 8);
+          cakeCtx.fill();
+        }
+
+        // رسم جسم الطبقة الداخلية
+        cakeCtx.fillStyle = item.color;
+        cakeCtx.beginPath();
+        cakeCtx.roundRect(centerX - w/2, item.y, w, h, 6);
+        cakeCtx.fill();
+
+        // رسم تفاصيل فراغات الكيك الداخلية لتشبه نسيج الكيك الحقيقي
+        if (!item.type.includes('frosting')) {
+          cakeCtx.strokeStyle = 'rgba(0,0,0,0.18)';
+          cakeCtx.lineWidth = 1.5;
+          for(let pX = centerX - w/2 + 15; pX < centerX + w/2 - 10; pX += 20) {
+            cakeCtx.beginPath();
+            cakeCtx.arc(pX, item.y + h/2, 2.5, 0, Math.PI*2);
+            cakeCtx.stroke();
+          }
+        }
+        cakeCtx.restore();
+      });
+
+      // تحديث وتناثر التوبينجز المرسومة من فوق
+      fallingElements.forEach(el => {
+        if (el.y < el.targetY) {
+          el.y += el.speed;
+          if (el.y > el.targetY) el.y = el.targetY;
+        }
+
+        cakeCtx.save();
+        if (el.subType === 'Strawberries') {
+          // رسم شرايح فراولة صغيرة
+          cakeCtx.fillStyle = '#ef4444';
+          cakeCtx.beginPath();
+          cakeCtx.ellipse(el.x, el.y, 6, 8, 0, 0, Math.PI * 2);
+          cakeCtx.fill();
+          cakeCtx.fillStyle = '#15803d'; // الورقة الخضراء الصغيرة فوق الفراولة
+          cakeCtx.fillRect(el.x - 2, el.y - 10, 4, 3);
+        } else if (el.subType === 'Mango Slices') {
+          // رسم شرايح مانجو صفراء مقوسة
+          cakeCtx.fillStyle = '#fbbf24';
+          cakeCtx.beginPath();
+          cakeCtx.roundRect(el.x - 7, el.y - 4, 14, 6, 3);
           cakeCtx.fill();
         } else {
-          // رسم طبقة الكيك بشكل واقعي مع فراغات أفقية توحي بمسامات الكيك
-          cakeCtx.fillStyle = item.color;
+          // رسم سبرينكلز ملونة مرسومة
+          cakeCtx.fillStyle = el.color;
           cakeCtx.beginPath();
-          let h = (item.type === 'f1' || item.type === 'f2') ? 18 : 28;
-          cakeCtx.roundRect(cakeAnimCanvas.width/2 - 80, item.y, 160, h, 6);
+          cakeCtx.roundRect(el.x - 4, el.y - 2, 8, 4, 2);
           cakeCtx.fill();
-
-          // إضافة تفاصيل الفراغات والمسام داخل الكيك
-          cakeCtx.strokeStyle = 'rgba(0,0,0,0.15)';
-          cakeCtx.lineWidth = 1.5;
-          cakeCtx.stroke();
         }
         cakeCtx.restore();
       });
