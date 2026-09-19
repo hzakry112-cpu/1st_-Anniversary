@@ -30,7 +30,7 @@
       position: relative;
     }
 
-    /* خلفية القلوب المتحركة (أكبر وأوضح) */
+    /* خلفية القلوب المتحركة */
     .bg-hearts {
       position: absolute;
       top: 0;
@@ -45,27 +45,17 @@
     .heart-particle {
       position: absolute;
       bottom: -15%;
-      font-size: 2rem; /* حجم أضخم وأوضح */
+      font-size: 2rem;
       animation: floatUp linear infinite;
-      opacity: 0.85; /* توضيح القلوب */
+      opacity: 0.85;
       filter: drop-shadow(0 0 10px currentColor);
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) rotate(0deg) scale(0.9);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.85;
-      }
-      85% {
-        opacity: 0.85;
-      }
-      100% {
-        transform: translateY(-115vh) rotate(360deg) scale(1.3);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(0deg) scale(0.9); opacity: 0; }
+      15% { opacity: 0.85; }
+      85% { opacity: 0.85; }
+      100% { transform: translateY(-115vh) rotate(360deg) scale(1.3); opacity: 0; }
     }
 
     /* الكرت الرئيسي */
@@ -74,7 +64,7 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: 28px;
-      padding: 45px 30px;
+      padding: 40px 25px;
       max-width: 480px;
       width: 100%;
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -86,20 +76,20 @@
 
     .title {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 600;
       color: #f8fafc;
       letter-spacing: 0.5px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
     }
 
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #94a3b8;
       font-weight: 300;
       line-height: 1.6;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       letter-spacing: 0.2px;
     }
 
@@ -110,21 +100,18 @@
       margin-bottom: 25px;
     }
 
-    /* أزرار الهدايا */
     .card-btn {
       background: rgba(255, 255, 255, 0.04);
       color: #cbd5e1;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
-      padding: 32px 15px;
+      padding: 30px 15px;
       font-size: 1.7rem;
       cursor: pointer;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
     }
 
     .card-btn:hover {
@@ -135,20 +122,13 @@
       box-shadow: 0 12px 25px rgba(42, 157, 143, 0.25);
     }
 
-    .card-btn:active {
-      transform: scale(0.95);
-    }
-
     .card-btn.visited {
       border-color: rgba(244, 162, 97, 0.7);
       color: #f4a261;
       background: rgba(244, 162, 97, 0.15);
-      box-shadow: 0 6px 20px rgba(244, 162, 97, 0.2);
     }
 
-    .page {
-      display: none !important;
-    }
+    .page { display: none !important; }
 
     .page.active {
       display: block !important;
@@ -160,17 +140,14 @@
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* ENVELOPE DESIGN */
-    .envelope-wrapper {
-      margin: 40px 0;
-    }
+    /* ENVELOPE & LETTER */
+    .envelope-wrapper { margin: 30px 0; }
 
     .envelope-interactive {
       width: 120px;
       height: 85px;
       margin: 0 auto;
       cursor: pointer;
-      position: relative;
       background: #2a1f1d;
       border-radius: 14px;
       border: 1px solid rgba(244, 162, 97, 0.4);
@@ -180,7 +157,6 @@
       justify-content: center;
       color: #f4a261;
       font-size: 1.8rem;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
       animation: pulseGlow 2s infinite ease-in-out;
     }
 
@@ -191,81 +167,154 @@
 
     .envelope-interactive:hover {
       transform: translateY(-6px) scale(1.08);
-      border-color: #f4a261;
-      color: #ffffff;
       background: #f4a261;
+      color: #ffffff;
     }
 
-    .envelope-interactive:active {
-      transform: scale(0.95);
-    }
-
-    /* تصميم ورقة الرسالة القديمة المكسوة والمكتوبة بالريشة */
+    /* ورقة الرسالة اليدوية */
     .letter-content {
       display: none;
-      text-align: center;
+      text-align: left;
+      direction: ltr;
       background-color: #f4e8c1;
       background-image: 
-        radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(200, 160, 120, 0.15), rgba(150, 100, 60, 0.25));
-      padding: 35px 25px;
-      border-radius: 6px;
-      margin: 25px 0 35px;
-      max-height: 360px;
+      padding: 30px 22px;
+      border-radius: 8px;
+      margin: 20px 0 25px;
+      max-height: 380px;
       overflow-y: auto;
       border: 1px solid #d4c391;
-      box-shadow: 
-        inset 0 0 30px rgba(110, 70, 30, 0.3),
-        inset 0 0 10px rgba(0, 0, 0, 0.2),
-        0 10px 25px rgba(0, 0, 0, 0.5);
-      position: relative;
-      animation: popIn 0.4s ease;
-      transform: rotate(-0.5deg);
-    }
-
-    /* تأثيرات تعفيط وكرمشة الورقة القديمة */
-    .letter-content::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
-      pointer-events: none;
+      box-shadow: inset 0 0 30px rgba(110, 70, 30, 0.25), 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .letter-text {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
+      font-size: 1.65rem;
       line-height: 1.6;
-      color: #2b1e16; /* لون حبر قديم فرنسي/داكن */
-      font-weight: 500;
+      color: #2b1e16;
+      font-weight: 600;
       white-space: pre-line;
-      text-shadow: 0.5px 0.5px 0px rgba(43, 30, 22, 0.2);
     }
 
-    /* REASON GENERATOR BOX */
+    /* SPACE & CONSTELLATIONS PAGE */
+    .space-container {
+      position: relative;
+      background: #030712;
+      border-radius: 20px;
+      padding: 20px 15px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-height: 360px;
+    }
+
+    .black-hole-wrapper {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .black-hole {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #000;
+      box-shadow: 0 0 15px 4px #3b82f6, 0 0 25px 8px #8b5cf6;
+      animation: rotateHole 6s linear infinite;
+    }
+
+    @keyframes rotateHole { 100% { transform: rotate(360deg); } }
+
+    .constellations-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-top: 45px;
+    }
+
+    .constellation-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 15px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .constellation-card:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: #3b82f6;
+    }
+
+    /* الكوكبة الأسطع والأنجم الأكبر (19/9) */
+    .constellation-card.brightest {
+      background: rgba(244, 162, 97, 0.12);
+      border: 1.5px solid #f4a261;
+      box-shadow: 0 0 20px rgba(244, 162, 97, 0.4);
+      transform: scale(1.02);
+      animation: superGlow 2s infinite alternate;
+    }
+
+    @keyframes superGlow {
+      from { box-shadow: 0 0 15px rgba(244, 162, 97, 0.3); }
+      to { box-shadow: 0 0 30px rgba(244, 162, 97, 0.8); }
+    }
+
+    .const-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #93c5fd;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brightest .const-title { color: #f4a261; font-size: 1.05rem; }
+
+    .const-date { font-size: 0.75rem; color: #64748b; margin-top: 2px; }
+
+    .space-quote-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #ddd6fe;
+      display: none;
+      text-align: left;
+      direction: ltr;
+      animation: popIn 0.3s ease;
+    }
+
+    /* REASON BOX */
     .reason-box {
       background: rgba(42, 157, 143, 0.1);
       border: 1.5px dashed rgba(42, 157, 143, 0.5);
-      padding: 35px 25px;
+      padding: 30px 20px;
       border-radius: 18px;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #f8fafc;
-      font-weight: 300;
-      line-height: 1.6;
-      min-height: 120px;
+      min-height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 30px 0;
-      transition: all 0.3s ease;
-      box-shadow: inset 0 0 15px rgba(42, 157, 143, 0.1);
+      margin: 25px 0;
     }
 
-    /* VINYL PLAYER */
+    /* VINYL & PLAYER WITH PROGRESS BAR */
     .vinyl-container {
-      margin: 35px auto;
-      width: 170px;
-      height: 170px;
+      margin: 20px auto;
+      width: 140px;
+      height: 140px;
     }
 
     .vinyl-record {
@@ -279,76 +328,90 @@
       align-items: center;
       animation: spin 4s linear infinite;
       animation-play-state: paused;
-      transition: box-shadow 0.4s ease;
     }
 
     .vinyl-record.playing {
       animation-play-state: running;
-      box-shadow: 0 0 35px rgba(244, 162, 97, 0.4);
+      box-shadow: 0 0 30px rgba(244, 162, 97, 0.4);
     }
 
     .vinyl-center {
-      width: 52px;
-      height: 52px;
+      width: 45px;
+      height: 45px;
       background: #0f172a;
       border-radius: 50%;
-      border: 2px solid rgba(244, 162, 97, 0.8);
+      border: 2px solid #f4a261;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #f4a261;
-      font-size: 0.95rem;
     }
 
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* شريط تقدم التسجيل الصوتي التفاعلي */
+    .audio-player-controls {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 16px;
+      margin-bottom: 20px;
     }
 
-    /* BUTTONS */
+    .progress-container {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      height: 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2a9d8f, #f4a261);
+      border-radius: 10px;
+      transition: width 0.1s linear;
+    }
+
+    .time-display {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
     .action-btn {
       background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
       color: #ffffff;
       border: none;
-      padding: 14px 28px;
+      padding: 13px 28px;
       border-radius: 30px;
       font-size: 0.95rem;
       font-weight: 500;
-      letter-spacing: 0.3px;
       cursor: pointer;
       transition: all 0.25s ease;
-      margin-bottom: 12px;
       width: 100%;
       box-shadow: 0 6px 20px rgba(231, 111, 81, 0.3);
     }
 
-    .action-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(231, 111, 81, 0.45);
-      background: linear-gradient(135deg, #f5b078 0%, #f4a261 100%);
-    }
-
-    .action-btn:active {
-      transform: scale(0.97);
-    }
+    .action-btn:hover { transform: translateY(-2px); }
 
     .back-btn {
       background: transparent;
       color: #64748b;
-      border: 1px solid transparent;
+      border: none;
       padding: 10px 24px;
       border-radius: 30px;
       font-size: 0.85rem;
       cursor: pointer;
-      transition: all 0.2s ease;
       margin-top: 5px;
     }
 
-    .back-btn:hover {
-      color: #cbd5e1;
-      transform: translateY(-1px);
-    }
-    
-    /* أيقونة التحكم بالصوت */
+    .back-btn:hover { color: #cbd5e1; }
+
     #music-control {
       position: fixed;
       bottom: 20px;
@@ -366,34 +429,19 @@
       z-index: 1000;
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
       backdrop-filter: blur(5px);
     }
-    
-    #music-control.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    #music-control:hover {
-      background: rgba(42, 157, 143, 0.3);
-      border-color: #2a9d8f;
-      color: #2a9d8f;
-    }
-    
+    #music-control.visible { opacity: 1; visibility: visible; }
   </style>
 </head>
 <body>
 
-  <!-- القلوب المتحركة بالخلفية -->
   <div class="bg-hearts" id="hearts-container"></div>
   
-  <!-- ملف موسيقى الخلفية -->
   <audio id="bg-music" loop preload="auto">
       <source src="رابط_موسيقى_الخلفية_هنا" type="audio/mpeg">
   </audio>
   
-  <!-- أيقونة التحكم بالصوت -->
   <div id="music-control">
       <i class="fa-solid fa-volume-high" id="volume-icon"></i>
   </div>
@@ -409,8 +457,8 @@
         <button class="card-btn" id="btn-1" onclick="openGift(1)">
           <i class="fa-regular fa-envelope"></i>
         </button>
-        <button class="card-btn" id="btn-2" onclick="openSpotify()">
-          <i class="fa-brands fa-spotify"></i>
+        <button class="card-btn" id="btn-2" onclick="openGift(2)">
+          <i class="fa-solid fa-user-astronaut"></i>
         </button>
         <button class="card-btn" id="btn-3" onclick="openGift(3)">
           <i class="fa-regular fa-compass"></i>
@@ -434,12 +482,59 @@
 
       <div id="letter-content" class="letter-content">
         <p class="letter-text">
-          My Dearest,
+HAPPY ANNIVERSARY MY LOVE!!
 
-          Every single day spent with you is my favorite chapter. Thank you for filling my world with light, love, and endless joy.
+Ahem… so before I start saying anything I am TRULY sorry for forgetting about today..
+Idk I just feel guilty abt it, but late better than never right?
 
-          Forever Yours.
+Anyways, HAPPY 1 YEAR ANNIVERSARY!!! Its been 1 year since we were together and its been 2 years since we were friends!! Just wanted to tell you how much I LOVE and ADORE and APPRECIATE you…
+I love every single moment with you
+You bring tears to my eyes
+You’re the first thing in my “reasons to be alive” list
+You’re easy to love, you feel right, you’re my one and only and when I say the one and only I mean my first ever true love and the last. No one feels like you and I’m glad to have you (the most perfect, the best, the coolest, the most awesome sauce, the sweetest, the cutest creature ever) as my boyfriend, best friend, homeboy, lover, family, and home..
+
+Mwah, Truly love you
+
+- Hala
         </p>
+      </div>
+
+      <button class="back-btn" onclick="goHome()">Back to Home</button>
+    </div>
+
+    <!-- PAGE 2: SPACE & CONSTELLATIONS -->
+    <div id="page-2" class="page">
+      <h1 class="title" style="text-transform: none;">Our Constellations</h1>
+      <p class="subtitle">Tap the stars & the black hole</p>
+
+      <div class="space-container">
+        <div class="black-hole-wrapper" onclick="showBlackHoleQuote()">
+          <div class="black-hole"></div>
+        </div>
+
+        <div class="constellations-grid">
+          <!-- 20/10 -->
+          <div class="constellation-card" onclick="showConstellation('20/10 ✨', 'The day that the purest soul came to life, the day that the sun and all the stars realised that their shine is nothing comparing to you..')">
+            <div class="const-title"><i class="fa-solid fa-star"></i> 20/10</div>
+            <div class="const-date">Click to reveal moment</div>
+          </div>
+
+          <!-- 11/8 -->
+          <div class="constellation-card" onclick="showConstellation('11/8 💬', 'The day that we first met… Who would’ve known that soulmates can find each other by a random comment? Now I know-')">
+            <div class="const-title"><i class="fa-solid fa-comments"></i> 11/8</div>
+            <div class="const-date">Click to reveal moment</div>
+          </div>
+
+          <!-- 19/9 (الأنجم الأسطع والأنظر في الوسط) -->
+          <div class="constellation-card brightest" onclick="showConstellation('19/9 💖 (The Brightest Star)', 'This month has 9/11 and 10/11 and the day we first date (the big 3). This day started everything…')">
+            <div class="const-title"><i class="fa-solid fa-wand-magic-sparkles"></i> 19/9 - The Big 3</div>
+            <div class="const-date" style="color: #f4a261;">The Day Everything Started ⭐</div>
+          </div>
+        </div>
+
+        <div class="space-quote-box" id="space-display">
+          Tap on a constellation or the Black Hole above...
+        </div>
       </div>
 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
@@ -458,19 +553,31 @@
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 4: VOICE MESSAGE -->
+    <!-- PAGE 4: VOICE MESSAGE WITH SEEKBAR -->
     <div id="page-4" class="page">
       <h1 class="title" style="text-transform: none;">A message for you</h1>
 
       <div class="vinyl-container">
         <div class="vinyl-record" id="vinyl">
           <div class="vinyl-center">
-            <i class="fa-solid fa-music"></i>
+            <i class="fa-solid fa-microphone"></i>
           </div>
         </div>
       </div>
 
-      <audio id="voice-audio" src="YOUR_AUDIO_URL_HERE"></audio>
+      <!-- رابط قوقل درايف الصوتي المباشر -->
+      <audio id="voice-audio" src="https://docs.google.com/uc?export=download&id=12ER5lffvQUcFd01Q6eo2MQZ7EL6BN-SW" preload="metadata"></audio>
+
+      <!-- شريط التقدم والتقديم/الترجيع -->
+      <div class="audio-player-controls">
+        <div class="progress-container" id="progress-container" onclick="setAudioProgress(event)">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-display">
+          <span id="current-time">0:00</span>
+          <span id="total-duration">0:00</span>
+        </div>
+      </div>
 
       <button class="action-btn" id="play-btn" onclick="toggleAudio()">Play Message</button>
       <button class="back-btn" onclick="goHome()">Back to Home</button>
@@ -479,7 +586,7 @@
   </div>
 
   <script>
-    // إنشاء القلوب المتحركة بالخلفية (قلوب أكبر وأوضح)
+    // القلوب المتحركة
     const heartsContainer = document.getElementById('hearts-container');
     const heartColors = ['#f4a261', '#2a9d8f', '#e76f51', '#3b82f6'];
 
@@ -490,7 +597,7 @@
       const randomColor = heartColors[Math.floor(Math.random() * heartColors.length)];
       const randomLeft = Math.random() * 100;
       const randomDuration = Math.random() * 4 + 5;
-      const randomSize = Math.random() * 20 + 22; // زيادة الحجم ليكون واضحاً وأكبر
+      const randomSize = Math.random() * 20 + 20;
 
       heart.style.color = randomColor;
       heart.style.left = randomLeft + '%';
@@ -498,15 +605,11 @@
       heart.style.fontSize = randomSize + 'px';
 
       heartsContainer.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, randomDuration * 1000);
+      setTimeout(() => { heart.remove(); }, randomDuration * 1000);
     }
-
     setInterval(createHeart, 350);
     
-    // --- إعدادات موسيقى الخلفية ---
+    // موسيقى الخلفية
     const bgMusic = document.getElementById('bg-music');
     const musicControl = document.getElementById('music-control');
     const volumeIcon = document.getElementById('volume-icon');
@@ -516,45 +619,29 @@
         if (!hasStarted) {
             bgMusic.play().then(() => {
                 hasStarted = true;
-                bgMusic.volume = 0.5;
+                bgMusic.volume = 0.4;
                 musicControl.classList.add('visible');
-            }).catch(error => {
-                console.log("autoplay prevented:", error);
-            });
+            }).catch(error => { console.log("autoplay prevented:", error); });
         }
     }
 
-    document.getElementById('btn-2').addEventListener('click', startBackgroundMusic);
     document.body.addEventListener('click', startBackgroundMusic, { once: false });
 
     musicControl.addEventListener('click', () => {
         if (bgMusic.muted) {
             bgMusic.muted = false;
-            volumeIcon.classList.remove('fa-volume-mute');
-            volumeIcon.classList.add('fa-volume-high');
+            volumeIcon.className = 'fa-solid fa-volume-high';
         } else {
             bgMusic.muted = true;
-            volumeIcon.classList.remove('fa-volume-high');
-            volumeIcon.classList.add('fa-volume-mute');
+            volumeIcon.className = 'fa-solid fa-volume-xmark';
         }
     });
-    // ----------------------------
-
-    const visitedGifts = new Set();
 
     function openGift(id) {
       startBackgroundMusic();
-      visitedGifts.add(id);
       document.getElementById('btn-' + id).classList.add('visited');
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + id).classList.add('active');
-    }
-
-    function openSpotify() {
-      startBackgroundMusic();
-      visitedGifts.add(2);
-      document.getElementById('btn-2').classList.add('visited');
-      // window.open('YOUR_SPOTIFY_URL_HERE', '_blank');
     }
 
     function goHome() {
@@ -568,11 +655,23 @@
       document.getElementById('letter-content').style.display = 'block';
     }
 
+    function showConstellation(title, desc) {
+      const display = document.getElementById('space-display');
+      display.style.display = 'block';
+      display.innerHTML = `<strong style="color: #f4a261; font-size: 0.95rem;">${title}</strong><br>${desc}`;
+    }
+
+    function showBlackHoleQuote() {
+      const display = document.getElementById('space-display');
+      display.style.display = 'block';
+      display.innerHTML = `<strong style="color: #c084fc; font-size: 0.95rem;">The Black Hole 🕳️</strong><br>Even this black hole that swallows stars and light cannot swallow my love for you... Our love is stronger than the gravity of the universe.`;
+    }
+
     const reasons = [
+      "Because you feel like home to me.",
       "Because your smile makes my whole day bright.",
-      "Because our inside jokes are unmatched.",
+      "Because you're my boyfriend, best friend, and lover.",
       "Because you understand me with just one look.",
-      "Because you always listen to my random stories.",
       "Because life is simply better with you around."
     ];
 
@@ -580,17 +679,20 @@
       const randomIndex = Math.floor(Math.random() * reasons.length);
       const display = document.getElementById('reason-display');
       display.style.opacity = '0';
-      display.style.transform = 'scale(0.95)';
       setTimeout(() => {
         display.innerText = reasons[randomIndex];
         display.style.opacity = '1';
-        display.style.transform = 'scale(1)';
-      }, 200);
+      }, 150);
     }
 
+    // مشغل الصوت والشريط التفاعلي (Play & Seekbar)
     const audio = document.getElementById('voice-audio');
     const vinyl = document.getElementById('vinyl');
     const playBtn = document.getElementById('play-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressContainer = document.getElementById('progress-container');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalDurationEl = document.getElementById('total-duration');
 
     function toggleAudio() {
       if (audio.paused) {
@@ -608,9 +710,38 @@
       playBtn.innerText = 'Play Message';
     }
 
+    // تحديث شريط التقدم والوقت
+    audio.addEventListener('timeupdate', (e) => {
+      const { duration, currentTime } = e.srcElement;
+      if (duration) {
+        const progressPercent = (currentTime / duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+
+        // حساب الدقائق والثواني
+        const currentMinutes = Math.floor(currentTime / 60);
+        const currentSeconds = Math.floor(currentTime % 60);
+        currentTimeEl.innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+
+        const totalMinutes = Math.floor(duration / 60);
+        const totalSeconds = Math.floor(duration % 60);
+        totalDurationEl.innerText = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
+      }
+    });
+
+    // التقديم والترجيع عند الضغط على الشريط
+    function setAudioProgress(e) {
+      const width = progressContainer.clientWidth;
+      const clickX = e.offsetX;
+      const duration = audio.duration;
+      if (duration) {
+        audio.currentTime = (clickX / width) * duration;
+      }
+    }
+
     audio.onended = function() {
       vinyl.classList.remove('playing');
       playBtn.innerText = 'Play Message';
+      progressBar.style.width = '0%';
     };
   </script>
 </body>
