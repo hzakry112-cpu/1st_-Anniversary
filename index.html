@@ -26,7 +26,7 @@
       align-items: center;
       background: radial-gradient(circle at center, #0f172a 0%, #090d16 70%, #030712 100%);
       padding: 20px 15px;
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
     }
 
@@ -171,7 +171,6 @@
       color: #ffffff;
     }
 
-    /* ورقة الرسالة اليدوية */
     .letter-content {
       display: none;
       text-align: left;
@@ -198,7 +197,7 @@
       white-space: pre-line;
     }
 
-    /* SKY CANVAS & CONSTELLATIONS PAGE */
+    /* SKY CANVAS */
     .sky-container {
       position: relative;
       width: 100%;
@@ -233,7 +232,6 @@
       white-space: nowrap;
     }
 
-    /* Modal / Pop-up for constellation details */
     .constellation-modal {
       display: none;
       position: absolute;
@@ -283,79 +281,114 @@
       transition: opacity 0.2s ease;
     }
 
-    /* VINYL & PLAYER WITH PROGRESS BAR */
-    .vinyl-container {
-      margin: 15px auto;
-      width: 130px;
-      height: 130px;
-    }
-
-    .vinyl-record {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, #1e293b 18%, #090d16 20%, #171e2e 40%, #090d16 60%, #171e2e 80%, #020617 100%);
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    /* CAKE GAME STYLES */
+    .cake-options {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: spin 4s linear infinite;
-      animation-play-state: paused;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
     }
 
-    .vinyl-record.playing {
-      animation-play-state: running;
-      box-shadow: 0 0 30px rgba(244, 162, 97, 0.4);
-    }
-
-    .vinyl-center {
-      width: 42px;
-      height: 42px;
-      background: #0f172a;
-      border-radius: 50%;
-      border: 2px solid #f4a261;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #f4a261;
-    }
-
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-
-    /* شريط تقدم التسجيل الصوتي التفاعلي */
-    .audio-player-controls {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-    }
-
-    .progress-container {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      height: 8px;
-      border-radius: 10px;
+    .cake-option-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-size: 0.95rem;
       cursor: pointer;
-      position: relative;
-      margin-bottom: 8px;
+      transition: all 0.25s ease;
+      text-align: center;
     }
 
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #2a9d8f, #f4a261);
-      border-radius: 10px;
-      transition: width 0.1s linear;
+    .cake-option-btn:hover {
+      background: rgba(244, 162, 97, 0.2);
+      border-color: #f4a261;
+      color: #f4a261;
+      transform: translateY(-2px);
     }
 
-    .time-display {
+    .cake-preview-container {
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 15px 0;
+      min-height: 250px;
       display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: #94a3b8;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
+    .cake-layer {
+      width: 180px;
+      height: 35px;
+      border-radius: 8px;
+      margin: 2px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    .frosting-layer {
+      width: 190px;
+      height: 18px;
+      border-radius: 6px;
+      margin: 2px 0;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .cake-toppings {
+      font-size: 1.3rem;
+      margin-top: 5px;
+      letter-spacing: 5px;
+    }
+
+    .cake-plate {
+      width: 230px;
+      height: 12px;
+      background: #cbd5e1;
+      border-radius: 50px;
+      margin-top: 5px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .cake-message-banner {
+      background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 12px rgba(231, 111, 81, 0.4);
+      animation: popIn 0.3s ease;
+    }
+
+    .promise-text {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-style: italic;
+      margin-top: 15px;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    /* GENERAL BUTTONS */
     .action-btn {
       background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
       color: #ffffff;
@@ -408,7 +441,7 @@
           <i class="fa-regular fa-compass"></i>
         </button>
         <button class="card-btn" id="btn-4" onclick="openGift(4)">
-          <i class="fa-solid fa-compact-disc"></i>
+          <i class="fa-solid fa-cake-candles"></i>
         </button>
       </div>
     </div>
@@ -477,36 +510,23 @@ Mwah, Truly love you
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
 
-    <!-- PAGE 4: VOICE MESSAGE WITH SEEKBAR -->
+    <!-- PAGE 4: CAKE BAKING GAME -->
     <div id="page-4" class="page">
-      <h1 class="title" style="text-transform: none;">A message for you</h1>
+      <h1 class="title" style="text-transform: none; font-size: 1.8rem;">Bake a Cake for Us</h1>
+      <p id="cake-step-title" class="subtitle" style="margin-bottom: 10px;">Step 1: Choose the 1st cake layer</p>
 
-      <div class="vinyl-container">
-        <div class="vinyl-record" id="vinyl">
-          <div class="vinyl-center">
-            <i class="fa-solid fa-microphone"></i>
-          </div>
-        </div>
+      <div class="cake-preview-container" id="cake-preview-box">
+        <div style="color: #64748b; font-size: 0.85rem;" id="empty-cake-text">Your cake will build up here...</div>
       </div>
 
-      <!-- ملف تسجيلك الصوتي Vocaroo المربوط مباشرة -->
-      <audio id="voice-audio" preload="metadata" crossorigin="anonymous">
-        <source src="https://voca.ro/1jyoZ5tGIXWA" type="audio/mp3">
-        <source src="https://voca.ro/1jyoZ5tGIXWA" type="audio/mpeg">
-      </audio>
-
-      <!-- شريط التقدم والتقديم/الترجيع -->
-      <div class="audio-player-controls">
-        <div class="progress-container" id="progress-container" onclick="setAudioProgress(event)">
-          <div class="progress-bar" id="progress-bar"></div>
-        </div>
-        <div class="time-display">
-          <span id="current-time">0:00</span>
-          <span id="total-duration">0:00</span>
-        </div>
+      <div class="cake-options" id="cake-options-container">
+        <!-- الخيارات تتغير ديناميكياً بالجافاسكريبت حسب الخطوة -->
       </div>
 
-      <button class="action-btn" id="play-btn" onclick="toggleAudio()">Play Message</button>
+      <div id="cake-promise-area" style="display: none;">
+        <p class="promise-text">I’ll make it for us one day that’s a promise (you’ll wash the dishes tho)</p>
+        <button class="action-btn" style="margin-top: 15px;" onclick="resetCakeGame()">Bake Another Cake</button>
+      </div>
 
       <button class="back-btn" onclick="goHome()">Back to Home</button>
     </div>
@@ -545,12 +565,14 @@ Mwah, Truly love you
       if (id === 2) {
         setTimeout(initSkyCanvas, 100);
       }
+      if (id === 4) {
+        initCakeGame();
+      }
     }
 
     function goHome() {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('home-page').classList.add('active');
-      pauseAudio();
     }
 
     function openLetterAnimation() {
@@ -741,7 +763,7 @@ Mwah, Truly love you
       modal.style.display = 'block';
     }
 
-    // Reasons Generator - Updated List
+    // Reasons Generator
     const reasons = [
       "Because you feel like home to me.",
       "Because your smile makes my whole day bright.",
@@ -766,64 +788,119 @@ Mwah, Truly love you
       }, 150);
     }
 
-    // Voice Message Audio Player
-    const audio = document.getElementById('voice-audio');
-    const vinyl = document.getElementById('vinyl');
-    const playBtn = document.getElementById('play-btn');
-    const progressBar = document.getElementById('progress-bar');
-    const progressContainer = document.getElementById('progress-container');
-    const currentTimeEl = document.getElementById('current-time');
-    const totalDurationEl = document.getElementById('total-duration');
+    // CAKE BAKING GAME LOGIC
+    let cakeState = {
+      layer1: null,
+      frosting1: null,
+      layer2: null,
+      frosting2: null,
+      topping: null,
+      step: 1
+    };
 
-    function toggleAudio() {
-      if (audio.paused) {
-        audio.play().then(() => {
-          vinyl.classList.add('playing');
-          playBtn.innerText = 'Pause Message';
-        }).catch(err => {
-          console.log("Audio play error: ", err);
+    const cakeColors = {
+      'كيكة جزر': '#d97706',
+      'ريد فيلفت': '#b91c1c',
+      'كيكة قهوة': '#78350f',
+      'كيكة فانيليا': '#fef08a',
+      'شوكولاتة': '#451a03',
+      'بيضاء (فانيليا)': '#f8fafc',
+      'فراولة': '#f43f5e'
+    };
+
+    function initCakeGame() {
+      cakeState = { layer1: null, frosting1: null, layer2: null, frosting2: null, topping: null, step: 1 };
+      document.getElementById('cake-promise-area').style.display = 'none';
+      renderCakeStep();
+    }
+
+    function renderCakeStep() {
+      const titleEl = document.getElementById('cake-step-title');
+      const optionsContainer = document.getElementById('cake-options-container');
+      const previewBox = document.getElementById('cake-preview-box');
+
+      // Build visual preview HTML
+      let previewHTML = '';
+      if (cakeState.step > 5) {
+        previewHTML += `<div class="cake-message-banner">Happy anniversary!</div>`;
+      }
+      if (cakeState.topping) {
+        let toppingEmoji = cakeState.topping === 'سبرينكلز' ? '✨🧁✨' : (cakeState.topping === 'فراولة' ? '🍓🍓🍓' : '🥭🥭🥭');
+        previewHTML += `<div class="cake-toppings">${toppingEmoji}</div>`;
+      }
+      if (cakeState.frosting2) {
+        let f2Color = cakeColors[cakeState.frosting2] || '#f8fafc';
+        previewHTML += `<div class="frosting-layer" style="background:${f2Color}; color:${cakeState.frosting2==='بيضاء (فانيليا)'?'#333':'#fff'}">${cakeState.frosting2}</div>`;
+      }
+      if (cakeState.layer2) {
+        let l2Color = cakeColors[cakeState.layer2] || '#d97706';
+        previewHTML += `<div class="cake-layer" style="background:${l2Color};">${cakeState.layer2}</div>`;
+      }
+      if (cakeState.frosting1) {
+        let f1Color = cakeColors[cakeState.frosting1] || '#f8fafc';
+        previewHTML += `<div class="frosting-layer" style="background:${f1Color}; color:${cakeState.frosting1==='بيضاء (فانيليا)'?'#333':'#fff'}">${cakeState.frosting1}</div>`;
+      }
+      if (cakeState.layer1) {
+        let l1Color = cakeColors[cakeState.layer1] || '#d97706';
+        previewHTML += `<div class="cake-layer" style="background:${l1Color};">${cakeState.layer1}</div>`;
+      }
+
+      if (cakeState.step === 1) {
+        previewHTML += `<div class="cake-plate"></div>`;
+      } else if (cakeState.step <= 5) {
+        previewHTML += `<div class="cake-plate"></div>`;
+      } else {
+        previewHTML += `<div class="cake-plate"></div>`;
+      }
+
+      previewBox.innerHTML = previewHTML;
+
+      // Render Step Options & Titles
+      optionsContainer.innerHTML = '';
+      if (cakeState.step === 1) {
+        titleEl.innerText = "Step 1: Choose the 1st cake layer";
+        ['كيكة جزر', 'ريد فيلفت', 'كيكة قهوة', 'كيكة فانيليا', 'شوكولاتة'].forEach(opt => {
+          optionsContainer.appendChild(createOptionButton(opt, () => { cakeState.layer1 = opt; cakeState.step++; renderCakeStep(); }));
+        });
+      } else if (cakeState.step === 2) {
+        titleEl.innerText = "Step 2: Choose the middle frosting";
+        ['بيضاء (فانيليا)', 'شوكولاتة', 'فراولة'].forEach(opt => {
+          optionsContainer.appendChild(createOptionButton(opt, () => { cakeState.frosting1 = opt; cakeState.step++; renderCakeStep(); }));
+        });
+      } else if (cakeState.step === 3) {
+        titleEl.innerText = "Step 3: Choose the 2nd cake layer";
+        ['كيكة جزر', 'ريد فيلفت', 'كيكة قهوة', 'كيكة فانيليا', 'شوكولاتة'].forEach(opt => {
+          optionsContainer.appendChild(createOptionButton(opt, () => { cakeState.layer2 = opt; cakeState.step++; renderCakeStep(); }));
+        });
+      } else if (cakeState.step === 4) {
+        titleEl.innerText = "Step 4: Choose the top frosting";
+        ['بيضاء (فانيليا)', 'شوكولاتة', 'فراولة'].forEach(opt => {
+          optionsContainer.appendChild(createOptionButton(opt, () => { cakeState.frosting2 = opt; cakeState.step++; renderCakeStep(); }));
+        });
+      } else if (cakeState.step === 5) {
+        titleEl.innerText = "Step 5: Choose the topping";
+        ['سبرينكلز', 'فراولة', 'مانجو'].forEach(opt => {
+          optionsContainer.appendChild(createOptionButton(opt, () => { cakeState.topping = opt; cakeState.step++; renderCakeStep(); }));
         });
       } else {
-        pauseAudio();
+        titleEl.innerText = "Tada! Your custom cake is ready! 🎉";
+        optionsContainer.style.display = 'none';
+        document.getElementById('cake-promise-area').style.display = 'block';
       }
     }
 
-    function pauseAudio() {
-      audio.pause();
-      vinyl.classList.remove('playing');
-      playBtn.innerText = 'Play Message';
+    function createOptionButton(text, callback) {
+      const btn = document.createElement('button');
+      btn.className = 'cake-option-btn';
+      btn.innerText = text;
+      btn.onclick = callback;
+      return btn;
     }
 
-    audio.addEventListener('timeupdate', () => {
-      const { duration, currentTime } = audio;
-      if (duration) {
-        const progressPercent = (currentTime / duration) * 100;
-        progressBar.style.width = `${progressPercent}%`;
-
-        const currentMinutes = Math.floor(currentTime / 60);
-        const currentSeconds = Math.floor(currentTime % 60);
-        currentTimeEl.innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
-
-        const totalMinutes = Math.floor(duration / 60);
-        const totalSeconds = Math.floor(duration % 60);
-        totalDurationEl.innerText = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
-      }
-    });
-
-    function setAudioProgress(e) {
-      const width = progressContainer.clientWidth;
-      const clickX = e.offsetX;
-      const duration = audio.duration;
-      if (duration) {
-        audio.currentTime = (clickX / width) * duration;
-      }
+    function resetCakeGame() {
+      document.getElementById('cake-options-container').style.display = 'flex';
+      initCakeGame();
     }
-
-    audio.onended = function() {
-      vinyl.classList.remove('playing');
-      playBtn.innerText = 'Play Message';
-      progressBar.style.width = '0%';
-    };
   </script>
 </body>
 </html>
